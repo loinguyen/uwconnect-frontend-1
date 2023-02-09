@@ -1,26 +1,23 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  state = { message: "Max is cool" };
+function GetMessage() {
+  const [message, setMessage] = useState(null);
 
-  componentDidMount() {
-    fetch('http://127.0.0.1:5000/users/ping_db')
-      .then(response => response.json())
-      .then(data => this.setState({ message: data[0].Test }));
-  }
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/dummy/ping_db")
+      .then(res => res.json())
+      .then(data => setMessage(data[0].Test))
+  })
 
-  render() {
-    const { message } = this.state;
-    return (
-      <div className="App">
-        <header className="App-header">
-          { message ? <p>{ message }</p> : <p>Loading...</p> }
-        </header>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <header className="App-header">
+        { message ? <p>{ message }</p> : <p>Loading...</p> }
+      </header>
+    </div>
+  );
 }
 
-export default App;
+export default GetMessage;
