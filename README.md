@@ -6,7 +6,7 @@
 
 
 
-To install latest LTS version of NodeJs on WSL2 Ubuntu run the following command:
+To install the latest LTS version of NodeJs on WSL2 Ubuntu run the following command:
 
 `sudo apt-get install curl`
 
@@ -20,7 +20,7 @@ To install latest LTS version of NodeJs on WSL2 Ubuntu run the following command
 
 
 
-After Instlling NodeJs. Navigate to your uwconnect frontend local repo and run the following command:
+After Installing NodeJs. Navigate to your uwconnect frontend local repo and run the following command:
 
 `npm install`
 
