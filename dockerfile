@@ -1,5 +1,4 @@
-# Need to switch to another container
-FROM node:13.12.0-alpine
+FROM node:18.14.0-bullseye
 
 WORKDIR /client
 
