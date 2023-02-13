@@ -8,11 +8,17 @@
 
 To install the latest LTS version of NodeJs on WSL2 Ubuntu run the following command:
 
-`sudo apt-get install curl`
+```shell
+sudo apt-get install curl
+```
 
-`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash`
+```shell
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+```
 
-`nvm install --lts`
+```shell
+nvm install --lts
+```
 
 
 
@@ -22,9 +28,13 @@ To install the latest LTS version of NodeJs on WSL2 Ubuntu run the following com
 
 After Installing NodeJs. Navigate to your uwconnect frontend local repo and run the following command:
 
-`npm install`
+```shell
+npm install
+```
 
 To run Reactjs app, run the following command:
 
-`npm start`
+```shell
+npm start
+```
 
