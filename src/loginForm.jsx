@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import './formStyle.css';
+import logo from './images/login_logo.png'
 
 
 function GetLoginForm(){
@@ -24,11 +25,7 @@ function GetLoginForm(){
 
         <div className="loginContainer">
             <form> 
-                <img src="https://uwaterloo.ca/canadian-semiconductor-science-technology-conference/sites/ca.canadian-semiconductor-science-technology-conference/files/styles/conference_sponsor/public/university_of_waterloo_logo_c.png?itok=IeGDcH--"
-                >
-                </img>
-                {/* <img src="https://static.thenounproject.com/png/594218-200.png"></img> */}
-                
+                <img src={logo}></img>
                 <h1>UWConnect</h1>
                 <input type = "text" placeholder="Email"/>
                 <input type = "password" placeholder="Password"/>
