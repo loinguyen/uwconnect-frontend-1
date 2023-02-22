@@ -5,6 +5,8 @@ import './GetHelloMessage.js';
 import GetMessage from './GetHelloMessage.js';
 import GetLoginForm from './loginForm';
 import GetSignupForm from './signupForm';
+import Home from './Home';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -18,7 +20,8 @@ function App() {
   return (
     <Router>
       <Routes>
-      <Route exact path='/' element={<div className='App-header'><GetLoginForm /></div>}/>
+        <Route exact path='/' element={<div className='App-header'><GetLoginForm /></div>}/>
+        <Route exact path='/home' element={<div className='App-header'><Home /></div>}/>
         <Route exact path='/login' element={<div className='App-header'><GetLoginForm /></div>}/>
         <Route exact path='/register' element={<div className='App-header'><GetSignupForm /></div>}/>
       </Routes>
