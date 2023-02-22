@@ -36,7 +36,7 @@ function GetLoginForm(){
                     style = {{ backgroundColor : isHover ? "orange" : "black"}}
                 >Login
                 </button>
-                <p style={{fontSize: "18px"}}>New User? <a href="123" style={{color:"orange"}}>Register</a></p>
+                <p style={{fontSize: "18px"}}>New User? <a href="/register" style={{color:"orange"}}>Register</a></p>
             </form>
         </div>
 
