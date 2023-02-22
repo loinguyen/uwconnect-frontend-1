@@ -1,26 +1,30 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './GetHelloMessage.js';
+import GetMessage from './GetHelloMessage.js';
+import GetLoginForm from './loginForm';
+import GetSignupForm from './signupForm';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  redirect,
+  Link
+} from "react-router-dom";
+  
 
-class App extends Component {
-  state = { message: "Max is cool" };
-
-  componentDidMount() {
-    fetch('http://127.0.0.1:5000/users/ping_db')
-      .then(response => response.json())
-      .then(data => this.setState({ message: data[0].Test }));
-  }
-
-  render() {
-    const { message } = this.state;
-    return (
-      <div className="App">
-        <header className="App-header">
-          { message ? <p>{ message }</p> : <p>Loading...</p> }
-        </header>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <Router>
+      <Routes>
+      <Route exact path='/' element={<div className='App-header'><GetLoginForm /></div>}/>
+        <Route exact path='/login' element={<div className='App-header'><GetLoginForm /></div>}/>
+        <Route exact path='/register' element={<div className='App-header'><GetSignupForm /></div>}/>
+      </Routes>
+    </Router>
+    )
+  // <div className='App-header'><GetSignupForm /></div>;
 }
 
 export default App;
