@@ -13,13 +13,13 @@ function GetLoginForm() {
     const [Pass,setPWValue] = useState("");
     const [Msg, setRegisterMessage] = useState("");
     const [EmailError,setEmailerror] = useState(""); 
-    const [PassError,setPWerror] = useState(""); 
+    // const [PassError,setPWerror] = useState(""); 
     const navigate = useNavigate();
 
     function ButtonClick() {
         setClickStatus(true);
         
-        if (EmailError == "" && PassError == "") {
+        if (EmailError == "") {
             fetch('http://127.0.0.1:5000/user/validate', {
             method: 'POST',
             headers: {
@@ -33,7 +33,7 @@ function GetLoginForm() {
                 })
             })
             .then(response => response.json())
-            .then(json => setRegisterMessage(json.message));    
+            .then(json => setRegisterMessage(json.message));
         }     
     }
 
@@ -65,19 +65,23 @@ function GetLoginForm() {
 
     function UpdatePass(event) {
         setPWValue(event.target.value);
-        if (/^(?=.{8,})(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/.test(event.target.value) == false)
-        {
-            setPWerror ("Password needs to be at least 8 in length, one number, one upper case, one lower case and one special character");
-        }
-        else {
-            setPWerror ("");
-        }
+        // if (/^(?=.{8,})(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/.test(event.target.value) == false)
+        // {
+        //     setPWerror ("Password needs to be at least 8 in length, one number, one upper case, one lower case and one special character");
+        // }
+        // else {
+        //     setPWerror ("");
+        // }
         //setRegisterMessage(JSON.stringify({email: Email, password: Pass,checkUserOnly: false,}));
     }
 
     React.useEffect(() => {
         if (Msg == "success") {
             LoginStatus = true;
+        }
+
+        if (Msg == "fail") {
+            setRegisterMessage("Email or Password incorrect");
         }
 
         CheckLoginStatus();
@@ -91,8 +95,7 @@ function GetLoginForm() {
                 <input type = "text" placeholder="Email" onChange={UpdateEmail}/>
                 <p className="errorMsg">{EmailError}</p>
                 <input type = "password" placeholder="Password" onChange={UpdatePass}/>
-                <p className="errorMsg">{PassError}</p>
-                <p>{Msg}</p>
+                <p className="errorMsg">{Msg}</p>
                 <button 
                     onClick={ButtonClick}
                     onMouseOver={MouseOver} 
