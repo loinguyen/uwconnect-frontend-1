@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import './formStyle.css';
 import logo from './images/login_logo.png';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
-function GetLoginForm(){
+function GetLoginForm() {
 
     const [isClick,setClickStatus] = useState(false);
     const [isHover,setHover] = useState(false);
@@ -16,7 +16,7 @@ function GetLoginForm(){
     const [PassError,setPWerror] = useState(""); 
     const navigate = useNavigate();
 
-    function ButtonClick(){
+    function ButtonClick() {
         setClickStatus(true);
         
         if (EmailError == "" && PassError == "") {
@@ -34,56 +34,49 @@ function GetLoginForm(){
             })
             .then(response => response.json())
             .then(json => setRegisterMessage(json.message));    
-            
-            
-
-        }
-
-        
-        
+        }     
     }
 
-    function CheckLoginStatus(){
-
-        if (LoginStatus == true){
+    function CheckLoginStatus() {
+        if (LoginStatus == true) {
             navigate('/home',{state:{name:Email}});
         } 
     }
     
-    function MouseOver(){
+    function MouseOver() {
         setHover(true);
-    
     };
     
-    function MouseOut(){
+    function MouseOut() {
         setHover(false);
     }
 
-    function UpdateEmail(event){
+    function UpdateEmail(event) {
         setEmailValue(event.target.value);
-        if (/@uwaterloo.ca/.test(event.target.value) == false)
+
+        if (/@uwaterloo.ca$/.test(event.target.value) == false)
         {
-            setEmailerror ("Need to be a uwaterloo email") ;
+            setEmailerror ("Please use a uwaterloo email");
         }
-        else{
-            setEmailerror ("") ;
+        else {
+            setEmailerror ("");
         }
     }
 
-    function UpdatePass(event){
+    function UpdatePass(event) {
         setPWValue(event.target.value);
         if (/^(?=.{8,})(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$/.test(event.target.value) == false)
         {
-            setPWerror ("Password need to be at least 8 in length, one upper case, one lower case and one special character") ;
+            setPWerror ("Password needs to be at least 8 in length, one number, one upper case, one lower case and one special character");
         }
-        else{
-            setPWerror ("") ;
+        else {
+            setPWerror ("");
         }
         //setRegisterMessage(JSON.stringify({email: Email, password: Pass,checkUserOnly: false,}));
     }
 
     React.useEffect(() => {
-        if (Msg == "success"){
+        if (Msg == "success") {
             LoginStatus = true;
         }
 
@@ -91,8 +84,6 @@ function GetLoginForm(){
       }, [Msg]);
 
     return (
-
-        
         <div className="loginContainer">
             {/* <form>  */}
                 <img src={logo}></img>
@@ -113,11 +104,7 @@ function GetLoginForm(){
                 <p style={{fontSize: "18px"}}>New User? <a href="/register" style={{color:"orange"}}>Register</a></p>
             {/* </form> */}
         </div>
-
-
     );
-
-
 }
 
 export default GetLoginForm;
