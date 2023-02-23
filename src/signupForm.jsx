@@ -122,7 +122,7 @@ function GetSignupForm(){
                 <input type = "password" placeholder="Confirm  Password" onChange={OnConfirmChange} />
                 <p className="errorMsg">{ConfirmError}</p>
                 <p className="errorMsg">{EmailCheckError}</p>
-                <p>{Msg}</p>
+                {/* <p>{Msg}</p> */}
                 <button 
                     onClick={ButtonClick}
                     onMouseOver={MouseOver} 
