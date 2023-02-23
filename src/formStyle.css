@@ -2,6 +2,7 @@ form {
     padding: 20px 0;
     position: relative;
 }
+
 /* form input */
 input {
     border: 1px solid rgba(252, 252, 252, 0.4);
@@ -17,6 +18,7 @@ input {
     color: black;
     font-weight: 300;
 }
+
 /* form button */
 button {
     appearance: none;
@@ -29,13 +31,13 @@ button {
     width: 250px;
     font-size: 18px;
 }
+
 /* form h1 */
-h1{
+h1 {
   font-family: "Source Sans Pro", sans-serif;
   padding: 10px 15px;
   margin: 0 auto 10px auto;
 }
-
 
 .loginContainer {
     margin: 10% auto;
@@ -43,7 +45,7 @@ h1{
     text-align: center;
 }
 
-.errorMsg{
+.errorMsg {
     font-size: 12px;
-    color: red;
+    color: orange;
 }
