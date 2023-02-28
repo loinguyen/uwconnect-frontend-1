@@ -38,3 +38,21 @@ To run Reactjs app, run the following command:
 npm start
 ```
 
+### *Environment configuration*
+
+create a .env in the same location as package.json
+
+add the following line of code 
+
+```shell
+REACT_APP_API_LINK = your_api_link
+```
+npm start set environment to "development"
+
+npm build set environment to "production"
+
+the following file are priortize base on environment
+
+npm start: .env.development.local, .env.local, .env.development, .env
+npm run build: .env.production.local, .env.local, .env.production, .env
+npm test: .env.test.local, .env.test, .env (note .env.local is missing)
