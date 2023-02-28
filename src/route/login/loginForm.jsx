@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import './formStyle.css';
-import logo from './images/login_logo.png';
+import '../../styles/formStyle.css';
+import logo from '../../images/login_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -20,7 +20,8 @@ function GetLoginForm() {
         setClickStatus(true);
         
         if (EmailError == "") {
-            fetch('http://127.0.0.1:5000/user/validate', {
+            fetch(process.env.REACT_APP_API_LINK + '/user/validate', {
+            //fetch('http://127.0.0.1:5000/user/validate', {
             method: 'POST',
             headers: {
             'Accept': 'application/json',
@@ -96,6 +97,7 @@ function GetLoginForm() {
                 <p className="errorMsg">{EmailError}</p>
                 <input type = "password" placeholder="Password" onChange={UpdatePass}/>
                 <p className="errorMsg">{Msg}</p>
+                {/* <p>{process.env.REACT_APP_API_LINK + '/user/validate'}</p> */}
                 <button 
                     onClick={ButtonClick}
                     onMouseOver={MouseOver} 
