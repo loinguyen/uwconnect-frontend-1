@@ -1,6 +1,5 @@
 import React, {useState} from "react";
-import './formStyle.css';
-import logo from './images/login_logo.png';
+import '../../styles/formStyle.css';
 import {redirect} from "react-router-dom";
 import {useLocation} from 'react-router-dom';
 
