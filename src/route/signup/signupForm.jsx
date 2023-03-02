@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../../styles/formStyle.css';
 import logo from '../../images/login_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
+import * as Icon from 'react-bootstrap-icons'
 
 
 function GetSignupForm(){
@@ -18,12 +19,30 @@ function GetSignupForm(){
     const [ConfirmError, setConfirmerror] = useState(""); 
     const [ConfirmPW, setConfirmPWValue] = useState(false);
     const [Msg, setRegisterMessage] = useState("");
+    const [passwordType, setPasswordType] = useState("password");
+    const [confirmPasswordType, setConfirmPasswordType] = useState("password");
     const navigate = useNavigate();
-    
+
+    function TogglePass() {
+        if (passwordType === "password") {
+            setPasswordType("text");
+        } else {
+            setPasswordType("password");
+        }
+    }
+
+    function ToggleConfirmPass() {
+        if (confirmPasswordType === "password") {
+            setConfirmPasswordType("text");
+        } else {
+            setConfirmPasswordType("password");
+        }
+    }
+
     function ButtonClick() {
         setClickStatus(true);
         
-        if (EmailCheckError == "" && PassError == "" && ConfirmError == "") {
+        if (EmailCheckError === "" && PassError === "" && ConfirmError == "") {
             fetch(process.env.REACT_APP_API_LINK + '/user/register', {
             //fetch('http://127.0.0.1:5000/user/register', {
                 method: 'POST',
@@ -47,7 +66,7 @@ function GetSignupForm(){
     }
 
     function CheckRegisterStatus() {
-        if (RegisterStatus == true) {
+        if (RegisterStatus === true) {
             navigate('/login');
         } 
     }
@@ -63,7 +82,7 @@ function GetSignupForm(){
     function HandlePWChange(event) {
         setPWValue (event.target.value);
 
-        if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=])(?=.{8,}).*$/.test(event.target.value) == false)
+        if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&+=])(?=.{8,}).*$/.test(event.target.value) == false)
         {
             setPWerror ("Password needs to be at least 8 in length, one number, one upper case, one lower case and one special character") ;
         }
@@ -116,11 +135,17 @@ function GetSignupForm(){
             {/* <form>  */}
                 <img src={logo}></img>
                 <h1>UWConnect</h1>
-                <input type = "text" placeholder="Email" onChange={OnEmailChange}/>
+                <input type="text" placeholder="Email" onChange={OnEmailChange}/>
                 <p className="errorMsg">{EmailError}</p>
-                <input type = "password" placeholder="Password" onChange={HandlePWChange} />
+                <input type={passwordType} style={{display:"inline-block"}} className="password" placeholder="Password" onChange={HandlePWChange} />
+                <button className="togglePass" onClick={TogglePass}>
+                    { passwordType==="password" ? <Icon.EyeSlash color="black" /> : <Icon.Eye color="black" /> }
+                </button>
                 <p className="errorMsg">{PassError}</p>
-                <input type = "password" placeholder="Confirm  Password" onChange={OnConfirmChange} />
+                <input type={confirmPasswordType} style={{display:"inline-block"}} className="password" placeholder="Confirm  Password" onChange={OnConfirmChange} />
+                <button className="togglePass" onClick={ToggleConfirmPass}>
+                    { confirmPasswordType==="password" ? <Icon.EyeSlash color="black" /> : <Icon.Eye color="black" /> }
+                </button>
                 <p className="errorMsg">{ConfirmError}</p>
                 <p className="errorMsg">{EmailCheckError}</p>
                 {/* <p>{Msg}</p> */}
@@ -128,7 +153,7 @@ function GetSignupForm(){
                     onClick={ButtonClick}
                     onMouseOver={MouseOver} 
                     onMouseOut={MouseOut}
-                    style = {{ backgroundColor : isHover ? "orange" : "black"}}
+                    style={{ backgroundColor : isHover ? "orange" : "black"}}
                 >Register
                 </button>
                 <p style={{fontSize: "18px"}}>Already have an account? <a href="/login" style={{color:"orange"}} >Login</a></p>
