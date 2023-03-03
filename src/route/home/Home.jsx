@@ -31,9 +31,9 @@ const Home = () => {
 	return (
 		<ChatEngine
 			height='100vh'
-            projectID='2fff245d-e9d3-4482-a522-66052e83d62c'
-            userName='q32ye'
-            userSecret='2ManyConnections'
+            projectID='65fefe97-fdba-4815-bc12-c54a515c4377'
+            userName='qixin'
+            userSecret='caonima'
             renderNewChatForm={(creds) => renderChatForm(creds)}
 		/>
 	)
