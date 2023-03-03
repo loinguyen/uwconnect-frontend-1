@@ -1,21 +1,42 @@
-import React, {useState} from "react";
-import '../../styles/formStyle.css';
-import {redirect} from "react-router-dom";
-import {useLocation} from 'react-router-dom';
+import React, { useState } from 'react'
 
+import { ChatEngine, getOrCreateChat } from 'react-chat-engine'
 
-function Home(){
+const Home = () => {
+	const [username, setUsername] = useState('')
 
-    const location = useLocation();
+	function createDirectChat(creds) {
+		getOrCreateChat(
+			creds,
+			{ is_direct_chat: true, usernames: [username] },
+			() => setUsername('')
+		)
+	}
 
-    return (
-        <div className="loginContainer">
-                <p>Welcome to UWConnect '{location.state.name}' </p>   
-                <p>This is your home page</p>
-        </div>
-    );
+	function renderChatForm(creds) {
+		return (
+			<div>
+				<input 
+					placeholder='Username' 
+					value={username} 
+					onChange={(e) => setUsername(e.target.value)} 
+				/>
+				<button onClick={() => createDirectChat(creds)}>
+					Create
+				</button>
+			</div>
+		)
+	}
 
-
+	return (
+		<ChatEngine
+			height='100vh'
+            projectID='2fff245d-e9d3-4482-a522-66052e83d62c'
+            userName='q32ye'
+            userSecret='2ManyConnections'
+            renderNewChatForm={(creds) => renderChatForm(creds)}
+		/>
+	)
 }
 
 export default Home;

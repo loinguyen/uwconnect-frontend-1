@@ -1,10 +1,10 @@
-form {
+/* form {
     padding: 20px 0;
     position: relative;
-}
+} */
 
 /* form input */
-input {
+/* input {
     border: 1px solid rgba(252, 252, 252, 0.4);
     background-color: white;
     width: 250px;
@@ -17,23 +17,22 @@ input {
     font-size: 18px;
     color: black;
     font-weight: 300;
-}
+} */
 
 /* form button */
-button {
+/* button {
     appearance: none;
     outline: 0;
-    /* background-color: black; */
     border: 0;
     padding: 10px 15px;
     color: white;
     border-radius: 3px;
     width: 250px;
     font-size: 18px;
-}
+} */
 
 /* form h1 */
-h1 {
+/* h1 {
   font-family: "Source Sans Pro", sans-serif;
   padding: 10px 15px;
   margin: 0 auto 10px auto;
@@ -48,4 +47,4 @@ h1 {
 .errorMsg {
     font-size: 12px;
     color: orange;
-}
+} */

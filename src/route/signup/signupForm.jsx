@@ -24,8 +24,8 @@ function GetSignupForm(){
         setClickStatus(true);
         
         if (EmailCheckError == "" && PassError == "" && ConfirmError == "") {
-            fetch(process.env.REACT_APP_API_LINK + '/user/register', {
-            //fetch('http://127.0.0.1:5000/user/register', {
+            // fetch(process.env.REACT_APP_API_LINK + '/user/register', {
+            fetch('http://127.0.0.1:5000/user/register', {
                 method: 'POST',
                 headers: {
                 'Accept': 'application/json',
