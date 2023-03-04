@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './styles/App.css';
 import GetLoginForm from './route/login/loginForm';
 import GetSignupForm from './route/signup/signupForm';
+import GetProfileHobbies from './route/profile/hobbies';
 import Home from './route/home/Home';
 
 import {
