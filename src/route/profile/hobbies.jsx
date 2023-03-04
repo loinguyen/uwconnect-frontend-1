@@ -50,8 +50,8 @@ function GetProfileHobbies() {
     //Fetch the API from the backend to get the hobbies list
     //UseEffect is a safe way to update the variable `hobbiesList`
     useEffect(() => {
-        //fetch(process.env.REACT_APP_API_LINK + '/user/validate')
-        fetch('http://127.0.0.1:5000/hobbies')
+        fetch(process.env.REACT_APP_API_LINK + '/hobbies')
+        //fetch('http://127.0.0.1:5000/hobbies')
           .then(response => response.json()) //Arrow function to turn fetched data into json
           .then(json => json["hobbies"]) //Arrow function to get hobbies
           .then(array_dup => [...new Set(array_dup)]) //Arrow function to remove duplicates if any
