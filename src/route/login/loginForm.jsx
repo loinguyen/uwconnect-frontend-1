@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { Form, Col, Row } from 'react-bootstrap';
 import '../../styles/formStyle.css';
 import logo from '../../images/login_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
-
+import * as Icon from 'react-bootstrap-icons';
 
 function GetLoginForm() {
 
@@ -13,13 +14,22 @@ function GetLoginForm() {
     const [Pass,setPWValue] = useState("");
     const [Msg, setRegisterMessage] = useState("");
     const [EmailError,setEmailerror] = useState(""); 
+    const [passwordType, setPasswordType] = useState("password");
     // const [PassError,setPWerror] = useState(""); 
     const navigate = useNavigate();
+
+    function TogglePass() {
+        if (passwordType === "password") {
+            setPasswordType("text");
+        } else {
+            setPasswordType("password");
+        }
+    }
 
     function ButtonClick() {
         setClickStatus(true);
         
-        if (EmailError == "") {
+        if (EmailError === "") {
             fetch(process.env.REACT_APP_API_LINK + '/user/validate', {
             //fetch('http://127.0.0.1:5000/user/validate', {
             method: 'POST',
@@ -39,7 +49,7 @@ function GetLoginForm() {
     }
 
     function CheckLoginStatus() {
-        if (LoginStatus == true) {
+        if (LoginStatus === true) {
             navigate('/home',{state:{name:Email}});
         } 
     }
@@ -93,17 +103,20 @@ function GetLoginForm() {
             {/* <form>  */}
                 <img src={logo}></img>
                 <h1>UWConnect</h1>
-                <input type = "text" placeholder="Email" onChange={UpdateEmail}/>
+                <input type="text" placeholder="Email" onChange={UpdateEmail}/>
                 <p className="errorMsg">{EmailError}</p>
-                <input type = "password" placeholder="Password" onChange={UpdatePass}/>
+                <input type={passwordType} style={{display:"inline-block"}} className="password" placeholder="Password" onChange={UpdatePass}/>
+                <button className="togglePass" onClick={TogglePass}>
+                    { passwordType==="password" ? <Icon.EyeSlash color="black" /> : <Icon.Eye color="black" /> }
+                </button>
                 <p className="errorMsg">{Msg}</p>
                 {/* <p>{process.env.REACT_APP_API_LINK + '/user/validate'}</p> */}
                 <button 
                     onClick={ButtonClick}
                     onMouseOver={MouseOver} 
                     onMouseOut={MouseOut}
-                    onMouseUp = {CheckLoginStatus}
-                    style = {{ backgroundColor : isHover ? "orange" : "black"}}
+                    onMouseUp={CheckLoginStatus}
+                    style={{ backgroundColor : isHover ? "orange" : "black"}}
                 >Login
                 </button>
                 <p style={{fontSize: "18px"}}>New User? <a href="/register" style={{color:"orange"}}>Register</a></p>
