@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../../styles/formStyle.css';
+import style from '../../styles/formStyle.module.css';
 import logo from '../../images/login_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons'
@@ -131,23 +131,23 @@ function GetSignupForm(){
     }, [Msg]);
 
     return (
-        <div className="loginContainer">
+        <div className={style.loginContainer}>
             {/* <form>  */}
                 <img src={logo}></img>
                 <h1>UWConnect</h1>
                 <input type="text" placeholder="Email" onChange={OnEmailChange}/>
-                <p className="errorMsg">{EmailError}</p>
-                <input type={passwordType} style={{display:"inline-block"}} className="password" placeholder="Password" onChange={HandlePWChange} />
-                <button className="togglePass" onClick={TogglePass}>
+                <p className={style.errorMsg}>{EmailError}</p>
+                <input type={passwordType} style={{display:"inline-block"}} className={style.password} placeholder="Password" onChange={HandlePWChange} />
+                <button className={style.togglePass} onClick={TogglePass}>
                     { passwordType==="password" ? <Icon.EyeSlash color="black" /> : <Icon.Eye color="black" /> }
                 </button>
-                <p className="errorMsg">{PassError}</p>
-                <input type={confirmPasswordType} style={{display:"inline-block"}} className="password" placeholder="Confirm  Password" onChange={OnConfirmChange} />
-                <button className="togglePass" onClick={ToggleConfirmPass}>
+                <p className={style.errorMsg}>{PassError}</p>
+                <input type={confirmPasswordType} style={{display:"inline-block"}} className={style.password} placeholder="Confirm  Password" onChange={OnConfirmChange} />
+                <button className={style.togglePass} onClick={ToggleConfirmPass}>
                     { confirmPasswordType==="password" ? <Icon.EyeSlash color="black" /> : <Icon.Eye color="black" /> }
                 </button>
-                <p className="errorMsg">{ConfirmError}</p>
-                <p className="errorMsg">{EmailCheckError}</p>
+                <p className={style.errorMsg}>{ConfirmError}</p>
+                <p className={style.errorMsg}>{EmailCheckError}</p>
                 {/* <p>{Msg}</p> */}
                 <button 
                     onClick={ButtonClick}
