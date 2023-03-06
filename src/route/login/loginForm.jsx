@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Col, Row } from 'react-bootstrap';
-import '../../styles/formStyle.css';
+import style from '../../styles/formStyle.module.css';
 import logo from '../../images/login_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
@@ -99,17 +99,17 @@ function GetLoginForm() {
       }, [Msg]);
 
     return (
-        <div className="loginContainer">
+        <div className={style.loginContainer}>
             {/* <form>  */}
                 <img src={logo}></img>
                 <h1>UWConnect</h1>
                 <input type="text" placeholder="Email" onChange={UpdateEmail}/>
-                <p className="errorMsg">{EmailError}</p>
-                <input type={passwordType} style={{display:"inline-block"}} className="password" placeholder="Password" onChange={UpdatePass}/>
-                <button className="togglePass" onClick={TogglePass}>
+                <p className={style.errorMsg}>{EmailError}</p>
+                <input type={passwordType} style={{display:"inline-block"}} className={style.password} placeholder="Password" onChange={UpdatePass}/>
+                <button className={style.togglePass} onClick={TogglePass}>
                     { passwordType==="password" ? <Icon.EyeSlash color="black" /> : <Icon.Eye color="black" /> }
                 </button>
-                <p className="errorMsg">{Msg}</p>
+                <p className={style.errorMsg}>{Msg}</p>
                 {/* <p>{process.env.REACT_APP_API_LINK + '/user/validate'}</p> */}
                 <button 
                     onClick={ButtonClick}

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TagPicker } from 'rsuite';
 //https://stackoverflow.com/questions/63939772/rsuite-not-working-properly-how-to-fix-reactjs
-import "rsuite/dist/rsuite.min.css";
 
 /*
 When user login, if user profile is not exist then redirect user to user profile page. user profile page included 3 screen:

@@ -1,6 +1,11 @@
+//Global css must defined at the top and let it get overwritten
+import "rsuite/dist/rsuite.min.css";
+
+import './styles/App.css';
+
+//Our stuffs
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
-import './styles/App.css';
 import GetLoginForm from './route/login/loginForm';
 import GetSignupForm from './route/signup/signupForm';
 import GetProfileHobbies from './route/profile/hobbies';
