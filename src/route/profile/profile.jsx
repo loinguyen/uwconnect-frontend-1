@@ -2,10 +2,7 @@ import React, {useState} from "react";
 import {useLocation} from 'react-router-dom';
 import {redirect} from "react-router-dom";
 import { useMultistepForm } from "../../components/MultistepForm.ts";
-import Form1 from "./Form1";
-import Form2 from "./Enrollment";
-import Form3 from "./Form3";
-import Form4 from "./Form4";
+
 import GetProfileHobbies from "./hobbies";
 import Enrollment from "./Enrollment";
 import GetIdentity from "./identity";
