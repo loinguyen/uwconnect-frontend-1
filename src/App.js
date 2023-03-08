@@ -9,6 +9,8 @@ import logo from './logo.svg';
 import GetLoginForm from './route/login/loginForm';
 import GetSignupForm from './route/signup/signupForm';
 import GetProfileHobbies from './route/profile/hobbies';
+import GetIdentity from './route/profile/identity';
+import GetMakePublic from './route/profile/makePublic';
 import Home from './route/home/Home';
 
 import {
@@ -28,6 +30,8 @@ function App() {
         <Route exact path='/home' element={<div className='App-header'><Home /></div>}/>
         <Route exact path='/login' element={<div className='App-header'><GetLoginForm /></div>}/>
         <Route exact path='/register' element={<div className='App-header'><GetSignupForm /></div>}/>
+        <Route exact path='/profile/identity' element={<div className='App-header'><GetIdentity /></div>}/>
+        <Route exact path='/profile/makePublic' element={<div className='App-header'><GetMakePublic /></div>}/>
       </Routes>
     </Router>
     )

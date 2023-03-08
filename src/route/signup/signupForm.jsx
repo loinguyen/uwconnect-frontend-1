@@ -8,17 +8,16 @@ import * as Icon from 'react-bootstrap-icons'
 function GetSignupForm(){
     //let history = useHistory();
     var RegisterStatus = false;
-    const [jsonString, setjsonString] = useState("");
     const [isClick, setClickStatus] = useState(false);
     const [isHover, setHover] = useState(false);
-    const [Pass, setPWValue] = useState("");
-    const [Email, setEmailValue] = useState(""); 
-    const [EmailError, setEmailError] = useState("");
-    const [EmailCheckError, setEmailCheckError] = useState("");
-    const [PassError, setPWerror] = useState(""); 
-    const [ConfirmError, setConfirmerror] = useState(""); 
-    const [ConfirmPW, setConfirmPWValue] = useState(false);
-    const [Msg, setRegisterMessage] = useState("");
+    const [pass, setPWValue] = useState("");
+    const [email, setEmailValue] = useState(""); 
+    const [emailError, setEmailError] = useState("");
+    const [emailCheckError, setEmailCheckError] = useState("");
+    const [passError, setPWerror] = useState(""); 
+    const [confirmError, setConfirmError] = useState(""); 
+    const [confirmPW, setConfirmPWValue] = useState(false);
+    const [msg, setRegisterMessage] = useState("");
     const [passwordType, setPasswordType] = useState("password");
     const [confirmPasswordType, setConfirmPasswordType] = useState("password");
     const navigate = useNavigate();
@@ -42,7 +41,7 @@ function GetSignupForm(){
     function ButtonClick() {
         setClickStatus(true);
         
-        if (EmailCheckError === "" && PassError === "" && ConfirmError == "") {
+        if (emailCheckError === "" && passError === "" && confirmError == "") {
             fetch(process.env.REACT_APP_API_LINK + '/user/register', {
             //fetch('http://127.0.0.1:5000/user/register', {
                 method: 'POST',
@@ -51,14 +50,14 @@ function GetSignupForm(){
                 'Content-Type': 'application/json',
                     },
                 body: JSON.stringify({
-                email: Email,
-                password: Pass,
+                email: email,
+                password: pass,
                     })
                 })
                 .then(response => response.json())
                 .then(json => setRegisterMessage(json.message));
 
-            if (Msg != "success"){
+            if (msg != "success"){
 
             }
             //setRegisterMessage(JSON.stringify({email: Email, password: Pass}));
@@ -94,14 +93,14 @@ function GetSignupForm(){
     }
 
     function OnConfirmChange(event) {
-        if (event.target.value != Pass){
+        if (event.target.value != pass){
             setConfirmPWValue(false);
-            setConfirmerror("Password does not match");
+            setConfirmError("Password does not match");
             event.target.setCustomValidity("Password does not match");
         }
         else {
             setConfirmPWValue(true);
-            setConfirmerror("");
+            setConfirmError("");
         }
     }
 
@@ -120,34 +119,34 @@ function GetSignupForm(){
     }
 
     React.useEffect(() => {
-        if (Msg == "exist") {
+        if (msg == "exist") {
             setEmailCheckError("Email already exists");
         }
-        if (Msg == "success") {
+        if (msg == "success") {
             RegisterStatus = true;
         }
 
         CheckRegisterStatus();
-    }, [Msg]);
+    }, [msg]);
 
     return (
         <div className={style.loginContainer}>
             {/* <form>  */}
-                <img src={logo}></img>
+                <img src={logo} alt=""></img>
                 <h1>UWConnect</h1>
                 <input type="text" placeholder="Email" onChange={OnEmailChange}/>
-                <p className={style.errorMsg}>{EmailError}</p>
+                <p className={style.errorMsg}>{emailError}</p>
                 <input type={passwordType} style={{display:"inline-block"}} className={style.password} placeholder="Password" onChange={HandlePWChange} />
                 <button className={style.togglePass} onClick={TogglePass}>
                     { passwordType==="password" ? <Icon.EyeSlash color="black" /> : <Icon.Eye color="black" /> }
                 </button>
-                <p className={style.errorMsg}>{PassError}</p>
+                <p className={style.errorMsg}>{passError}</p>
                 <input type={confirmPasswordType} style={{display:"inline-block"}} className={style.password} placeholder="Confirm  Password" onChange={OnConfirmChange} />
                 <button className={style.togglePass} onClick={ToggleConfirmPass}>
                     { confirmPasswordType==="password" ? <Icon.EyeSlash color="black" /> : <Icon.Eye color="black" /> }
                 </button>
-                <p className={style.errorMsg}>{ConfirmError}</p>
-                <p className={style.errorMsg}>{EmailCheckError}</p>
+                <p className={style.errorMsg}>{confirmError}</p>
+                <p className={style.errorMsg}>{emailCheckError}</p>
                 {/* <p>{Msg}</p> */}
                 <button 
                     onClick={ButtonClick}
