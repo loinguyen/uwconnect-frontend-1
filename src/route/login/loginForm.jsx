@@ -21,7 +21,8 @@ function GetLoginForm() {
         
         if (EmailError == "") {
             // fetch(process.env.REACT_APP_API_LINK + '/user/validate', {
-            fetch('http://127.0.0.1:5000/user/validate', {
+            fetch('http://localhost:5000/user/validate', {
+            credentials: 'include',
             method: 'POST',
             headers: {
             'Accept': 'application/json',
@@ -40,7 +41,7 @@ function GetLoginForm() {
 
     function CheckLoginStatus() {
         if (LoginStatus == true) {
-            navigate('/home',{state:{name:Email}});
+            window.location.href = '/home';
         } 
     }
     
