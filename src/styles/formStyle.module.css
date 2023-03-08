@@ -64,6 +64,19 @@ h1 {
   margin: 0 auto 10px auto;
 }
 
+.selectionBox {
+    background-color: white;
+    width: 250px;
+    border-radius: 3px;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 10px auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    font-weight: 300;
+}
+
 label {
     font-family: "Source Sans Pro", sans-serif;
     padding: 10px 15px;
