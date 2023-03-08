@@ -48,7 +48,7 @@ function GetLoginForm() {
 
     function CheckLoginStatus() {
         if (loginStatus === true) {
-            navigate('/home',{state:{name:email}});
+            navigate('/profile',{state:{name:email}});
         } 
     }
     

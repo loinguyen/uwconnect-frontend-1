@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import '../../styles/formStyle.module.css';
+import style from '../../styles/formStyle.module.css';
 import {redirect} from "react-router-dom";
 import {useLocation} from 'react-router-dom';
 import Select from "react-select";
@@ -55,7 +55,7 @@ function Enrollment({program,admission_year,faculty,course}){
     //     };
 
     return (
-       <div>
+       <div className={style.loginContainer}>
             <h1>Enrollment Info</h1>
             {/* <label>Faculty</label> */}
             <Select placeholder = "Faculty" styles={{menuList :(baseStyles, state) => ({...baseStyles,color: 'black'})}}  options = {facultyArray}  />

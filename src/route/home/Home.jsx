@@ -6,14 +6,14 @@ import {useLocation} from 'react-router-dom';
 
 function Home(){
 
-    const location = useLocation();
+    // const location = useLocation();
 
-    return (
-        <div className={style.loginContainer}>
-                <p>Welcome to UWConnect '{location.state.name}' </p>   
-                <p>This is your home page</p>
-        </div>
-    );
+    // return (
+    //     <div className={style.loginContainer}>
+    //             <p>Welcome to UWConnect '{location.state.name}' </p>   
+    //             <p>This is your home page</p>
+    //     </div>
+    // );
 
 
 }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TagPicker } from 'rsuite';
+import style from '../../styles/formStyle.module.css';
+
 //https://stackoverflow.com/questions/63939772/rsuite-not-working-properly-how-to-fix-reactjs
 
 /*
@@ -61,30 +63,32 @@ function GetProfileHobbies() {
 
     //https://rsuitejs.com/components/tag-picker/
     return (
-        <div className="profileHobbiesTag">
-            <h1>My Hobbies</h1>
-            <TagPicker 
-                data={ParseDataForTagPicker(hobbiesList)} 
-                defaultValue={userHobbies}
-                onSelect={HandleSelect}
-                size="lg"
-                block
-                placeholder="Hobbies"
-                style={{width: 300, color: '#999', display: 'block', marginBottom: 0}} //color #999 for black text
-                menuStyle={{ width: 300 }}
-            />
-            <hr></hr>
+        <div className={style.loginContainer}>
+            <div className="profileHobbiesTag">
+                <h1>My Hobbies</h1>
+                <TagPicker 
+                    data={ParseDataForTagPicker(hobbiesList)} 
+                    defaultValue={userHobbies}
+                    onSelect={HandleSelect}
+                    size="lg"
+                    
+                    placeholder="Hobbies"
+                    style={{width: 300, height: "auto", color: '#999', marginBottom: 0}} //color #999 for black text
+                    menuStyle={{ width: 300 }}
+                />
+                {/* <hr></hr> */}
 
-            <h4>Dummy guy Hobbies (Viewing other person hobbies)</h4>
-            <TagPicker
-                //Quick demo on how would it look like on other people's hobby profile
-                plaintext
-                data={ParseDataForTagPicker(hobbiesList)}
-                defaultValue={["Tennis", "Reading"]}
-                //defaultValue={userHobbies} //Has to match with data
-                style={{ width: 300 }}
-                menuStyle={{ width: 300 }}
-            />
+                {/* <h4>Someone else Hobbies (Viewing other person hobbies)</h4>
+                <TagPicker
+                    //Quick demo on how would it look like on other people's hobby profile
+                    plaintext
+                    data={ParseDataForTagPicker(hobbiesList)}
+                    defaultValue={["Tennis", "Reading"]}
+                    //defaultValue={userHobbies} //Has to match with data
+                    style={{ width: 300 }}
+                    menuStyle={{ width: 300 }}
+                /> */}
+            </div>
         </div>
     );
 }

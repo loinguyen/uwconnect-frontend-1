@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-
-import {redirect} from "react-router-dom";
 import {useLocation} from 'react-router-dom';
+import {redirect} from "react-router-dom";
 import { useMultistepForm } from "../../components/MultistepForm.ts";
 import Form1 from "./Form1";
 import Form2 from "./Enrollment";
@@ -9,6 +8,8 @@ import Form3 from "./Form3";
 import Form4 from "./Form4";
 import GetProfileHobbies from "./hobbies";
 import Enrollment from "./Enrollment";
+import GetIdentity from "./identity";
+import GetMakePublic from "./makePublic";
 import MultiStepProgressBar from "../../components/MultistepProgressBar";
 import style from '../../styles/formStyle.module.css';
 import logo from '../../images/login_logo.png';
@@ -45,9 +46,10 @@ const INITIAL_DATA  = {
 function Profile(){
 
     const [data,setData] = useState(INITIAL_DATA);
-    const {steps, currentStepIndex, step,isFirstStep,isLastStep,back,next} = useMultistepForm([<Form1 {...data}/>,<Enrollment {...data}/>,<GetProfileHobbies {...data}/>,<Form4 {...data}/>]);
+    const {steps, currentStepIndex, step,isFirstStep,isLastStep,back,next} = useMultistepForm([<GetIdentity {...data}/>,<Enrollment {...data}/>,<GetProfileHobbies {...data}/>,<GetMakePublic {...data}/>]);
     const [isHover,setHover] = useState(false);
     const [isHover2,setHover2] = useState(false);
+    const location = useLocation();
 
     function MouseOver() {
         setHover(true);
@@ -85,6 +87,7 @@ function Profile(){
         
         
         <div className={style.ProgressBar}><MultiStepProgressBar onPageNumberClick={currentStepIndex + 1}/></div>
+        <p>Welcome to UWConnect '{location.state.name}' , let get you setup... </p>
         <form  onSubmit={onSubmit}>
             
             {/* <div className={style.profileContainer}> */}

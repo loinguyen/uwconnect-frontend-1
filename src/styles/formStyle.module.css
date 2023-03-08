@@ -131,7 +131,7 @@ label {
     width:50%; /* or whatever width you want. */
     position: absolute;
 
-    top: -2.5%;
+    top: 10%;
     margin: 10% auto;
     
     text-align: center;
@@ -176,8 +176,8 @@ label {
 
 .profileLogo{
 
-    width: 150px;
-    height: 50px;
+    width: 250px;
+    height: 100px;
     /* float: left; */
 
 }
@@ -190,8 +190,8 @@ label {
    
 .logoText {
     position: relative;
-    right: 25%;
-     font-size: 24px;
+    right: 35%;
+    font-size: 40px;
    }
 
 
