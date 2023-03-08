@@ -3,6 +3,7 @@ import "rsuite/dist/rsuite.min.css";
 
 import './styles/App.css';
 
+
 //Our stuffs
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
@@ -10,6 +11,7 @@ import GetLoginForm from './route/login/loginForm';
 import GetSignupForm from './route/signup/signupForm';
 import GetProfileHobbies from './route/profile/hobbies';
 import Home from './route/home/Home';
+import Profile from "./route/profile/profile";
 
 import {
   BrowserRouter as Router,
@@ -24,7 +26,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path='/' element={<div className='App-header'><GetProfileHobbies /></div>}/>
+        <Route exact path='/' element={<div className='App-header'><Profile /></div>}/>
         <Route exact path='/home' element={<div className='App-header'><Home /></div>}/>
         <Route exact path='/login' element={<div className='App-header'><GetLoginForm /></div>}/>
         <Route exact path='/register' element={<div className='App-header'><GetSignupForm /></div>}/>

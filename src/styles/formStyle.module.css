@@ -3,6 +3,11 @@ form / input / button / h1
 those css element should be changed to class or id  - Max
 */
 
+label{
+    display: block;
+    text-align: center;
+}
+
 form {
     padding: 20px 0;
     position: relative;
@@ -10,6 +15,21 @@ form {
 
 /* form input */
 input {
+    border: 1px solid rgba(252, 252, 252, 0.4);
+    background-color: white;
+    width: 250px;
+    border-radius: 3px;
+    font-family: "Source Sans Pro", sans-serif;
+    padding: 10px 15px;
+    margin: 10px auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    font-weight: 300;
+}
+
+select{
     border: 1px solid rgba(252, 252, 252, 0.4);
     background-color: white;
     width: 250px;
@@ -44,6 +64,12 @@ h1 {
   margin: 0 auto 10px auto;
 }
 
+label {
+    font-family: "Source Sans Pro", sans-serif;
+    padding: 10px 15px;
+    margin: 0 auto 10px auto;
+}
+
 .password {
     margin-right: -50px;
 }
@@ -67,3 +93,92 @@ h1 {
     font-size: 12px;
     color: orange;
 }
+
+.step{
+    display: block;
+    text-align: center;
+}
+
+.Select-box{
+    border: 1px solid rgba(252, 252, 252, 0.4);
+    background-color: black;
+    width: 250px;
+    border-radius: 3px;
+    font-family: "Source Sans Pro", sans-serif;
+    padding: 10px 15px;
+    margin: 10px auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    font-weight: 300;
+}
+
+.ProgressBar{
+    width:50%; /* or whatever width you want. */
+    position: absolute;
+
+    top: -2.5%;
+    margin: 10% auto;
+    
+    text-align: center;
+    
+}
+
+.logoContainer {
+    display: grid;
+    align-items: center; 
+    grid-template-columns: 0fr 0fr 0fr;
+    column-gap: 0px;
+    position: absolute;
+    top: 5%;
+   }
+
+.profileContainer{
+    width: 500px;
+    height: 450px;
+    /* position: fixed; */
+    /* margin: 10% auto; */
+    /* padding: 80px 0; */
+    text-align: center;
+
+}
+
+.profileButtonNext{
+    position: absolute;
+    /* right: 370px; */
+    width: 225px;
+    right: 0px;
+    
+    
+    
+}
+
+.profileButtonBack{
+    position: absolute;
+    
+    width: 225px;
+    
+}
+
+.profileLogo{
+
+    width: 150px;
+    height: 50px;
+    /* float: left; */
+
+}
+.profileLogoName{
+    display: inline;
+}
+
+
+   
+   
+.logoText {
+    position: relative;
+    right: 25%;
+     font-size: 24px;
+   }
+
+
