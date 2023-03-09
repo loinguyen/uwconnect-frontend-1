@@ -50,5 +50,11 @@
     "@testing-library/react": "^14.0.0",
     "jest": "^27.5.1",
     "react-test-renderer": "^18.2.0"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
