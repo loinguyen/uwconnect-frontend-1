@@ -130,10 +130,10 @@ function GetSignupForm(){
     }, [msg]);
 
     return (
-        <div className={style.loginContainer}>
+        <div data-testid = "signup-1" className={style.loginContainer}>
             {/* <form>  */}
                 <img src={logo} alt=""></img>
-                <h1>UWConnect</h1>
+                <h1 >UWConnect</h1>
                 <input type="text" placeholder="Email" onChange={OnEmailChange}/>
                 <p className={style.errorMsg}>{emailError}</p>
                 <input type={passwordType} style={{display:"inline-block"}} className={style.password} placeholder="Password" onChange={HandlePWChange} />
@@ -155,7 +155,7 @@ function GetSignupForm(){
                     style={{ backgroundColor : isHover ? "orange" : "black"}}
                 >Register
                 </button>
-                <p style={{fontSize: "18px"}}>Already have an account? <a href="/login" style={{color:"orange"}} >Login</a></p>
+                <p data-testid = "signup-2" style={{fontSize: "18px"}}>Already have an account? <a data-testid = "signup-3" href="/login" style={{color:"orange"}} >Login</a></p>
             {/* </form> */}
         </div>
     );

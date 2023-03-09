@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import style from '../../styles/formStyle.module.css';
 import logo from '../../images/login_logo.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Router, useNavigate } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
+import ErrorBoundary from '../../components/ErrorBoundary';
+
 
 function GetLoginForm() {
     var loginStatus = false;
@@ -97,10 +99,12 @@ function GetLoginForm() {
       }, [msg]);
 
     return (
-        <div className={style.loginContainer}>
+        
+        <ErrorBoundary>
+        <div data-testid = "login-1" className={style.loginContainer}>
             {/* <form>  */}
                 <img src={logo} alt=""></img>
-                <h1>UWConnect</h1>
+                <h1 data-testid = "login-2">UWConnect</h1>
                 <input type="text" placeholder="Email" onChange={UpdateEmail}/>
                 <p className={style.errorMsg}>{emailError}</p>
                 <input type={passwordType} style={{display:"inline-block"}} className={style.password} placeholder="Password" onChange={UpdatePass}/>
@@ -117,9 +121,10 @@ function GetLoginForm() {
                     style={{ backgroundColor : isHover ? "orange" : "black" }}
                 >Login
                 </button>
-                <p style={{fontSize: "18px"}}>New User? <a href="/register" style={{color:"orange"}}>Register</a></p>
+                <p data-testid = "login-3"  style={{fontSize: "18px"}}>New User? <a data-testid = "login-4" href="/register" style={{color:"orange"}}>Register</a></p>
             {/* </form> */}
         </div>
+        </ErrorBoundary>
     );
 }
 
