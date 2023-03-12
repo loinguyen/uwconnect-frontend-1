@@ -27,11 +27,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path='/' element={<div className='App-header'><GetLoginForm /></div>}/>
+        <Route exact path='/' element={<div data-testid = "App-1" className='App-header'><GetLoginForm  /></div>}/>
         <Route exact path='/profile' element={<div className='App-header'><Profile /></div>}/>
-        <Route exact path='/home' element={<div className='App-header'><Home /></div>}/>
-        <Route exact path='/login' element={<div className='App-header'><GetLoginForm /></div>}/>
-        <Route exact path='/register' element={<div className='App-header'><GetSignupForm /></div>}/>
+        <Route exact path='/home' element={<div  className='App-header'><Home /></div>}/>
+        <Route exact path='/login' element={<div  className='App-header'><GetLoginForm /></div>}/>
+        <Route exact path='/register' element={<div  className='App-header'><GetSignupForm /></div>}/>
         {/* <Route exact path='/profile/identity' element={<div className='App-header'><GetIdentity /></div>}/>
         <Route exact path='/profile/makePublic' element={<div className='App-header'><GetMakePublic /></div>}/> */}
       </Routes>
