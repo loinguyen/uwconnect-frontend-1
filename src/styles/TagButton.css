@@ -1,0 +1,3 @@
+.btn-check+.btn:hover {
+    border-width: 2px;
+}
