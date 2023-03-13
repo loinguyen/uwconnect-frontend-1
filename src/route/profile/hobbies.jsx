@@ -2,6 +2,7 @@ import { async } from "q";
 import React, { useState, useEffect } from "react";
 import TagButton from '../../components/TagButton'
 import style from '../../styles/formStyle.module.css';
+import { ToggleButtonGroup } from "react-bootstrap";
 
 /*
 When user login, if user profile is not exist then redirect user to user profile page. user profile page included 3 screen:
@@ -52,7 +53,7 @@ function GetProfileHobbies() {
         <div className={style.loginContainer}>
             <div className="profileHobbiesTag">
                 <h1>My Hobbies</h1>
-                <div className="mw-100" style={{overflow:'auto', maxHeight: '31vh'}}>
+                <div className="mw-100 d-flex justify-content-center flex-wrap" style={{overflow:'auto', maxHeight: '31vh'}}>
                 {
                     hobbiesList.map((item) => (
                         <TagButton
@@ -64,6 +65,7 @@ function GetProfileHobbies() {
                         />
                     ))
                 }
+                
                 </div>
             </div>
         </div>

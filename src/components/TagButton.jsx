@@ -17,7 +17,7 @@ const TagButton = (props) => {
             <ToggleButton
                 id={"toggle-check-" +keyValue}
                 key={"toggle-check-" +keyValue}
-                className="mb-2 me-1"
+                className="mx-1 my-1"
                 type="checkbox"
                 variant="outline-primary"
                 checked={selected}
