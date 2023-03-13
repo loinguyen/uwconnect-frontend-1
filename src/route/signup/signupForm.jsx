@@ -41,7 +41,7 @@ function GetSignupForm(){
     function ButtonClick() {
         setClickStatus(true);
         
-        if (emailCheckError === "" && passError === "" && confirmError == "") {
+        if (emailCheckError === "" && passError === "" && confirmError === "") {
             fetch(process.env.REACT_APP_API_LINK + '/user/register', {
             //fetch('http://127.0.0.1:5000/user/register', {
                 method: 'POST',
@@ -57,7 +57,7 @@ function GetSignupForm(){
                 .then(response => response.json())
                 .then(json => setRegisterMessage(json.message));
 
-            if (msg != "success"){
+            if (msg !== "success"){
 
             }
             //setRegisterMessage(JSON.stringify({email: Email, password: Pass}));
@@ -81,7 +81,7 @@ function GetSignupForm(){
     function HandlePWChange(event) {
         setPWValue (event.target.value);
 
-        if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&+=])(?=.{8,}).*$/.test(event.target.value) == false)
+        if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&+=])(?=.{8,}).*$/.test(event.target.value) === false)
         {
             setPWerror ("Password needs to be at least 8 in length, one number, one upper case, one lower case and one special character") ;
         }
@@ -93,7 +93,7 @@ function GetSignupForm(){
     }
 
     function OnConfirmChange(event) {
-        if (event.target.value != pass){
+        if (event.target.value !== pass){
             setConfirmPWValue(false);
             setConfirmError("Password does not match");
             event.target.setCustomValidity("Password does not match");
@@ -109,7 +109,7 @@ function GetSignupForm(){
         setEmailValue(event.target.value);
         setRegisterMessage("");
 
-        if (/@uwaterloo.ca$/.test(event.target.value) == false)
+        if (/@uwaterloo.ca$/.test(event.target.value) === false)
         {
             setEmailError("Please use a uwaterloo email");
         }
@@ -119,10 +119,10 @@ function GetSignupForm(){
     }
 
     React.useEffect(() => {
-        if (msg == "exist") {
+        if (msg === "exist") {
             setEmailCheckError("Email already exists");
         }
-        if (msg == "success") {
+        if (msg === "success") {
             RegisterStatus = true;
         }
 

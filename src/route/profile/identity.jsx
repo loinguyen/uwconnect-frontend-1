@@ -5,6 +5,7 @@ import cat1 from '../../images/cat1.jpeg';
 import cat2 from '../../images/cat2.jpeg';
 import dog1 from '../../images/dog1.jpeg';
 import dog2 from '../../images/dog2.jpeg';
+import TagButton from '../../components/TagButton'
 
 
 //https://stackoverflow.com/questions/63939772/rsuite-not-working-properly-how-to-fix-reactjs
@@ -48,7 +49,8 @@ function GetIdentity() {
 
     const genders = [
         { value: 'female', label: 'Female' },
-        { value: 'male', label: 'Male' }
+        { value: 'male', label: 'Male' },
+        { value: 'other', label: 'Other'}
     ];
 
     const profilePics = [
@@ -111,7 +113,7 @@ function GetIdentity() {
             <input type="text" placeholder="First Name" onChange={UpdateFirstName}/>
             <input type="text" placeholder="Last Name" onChange={UpdateLastName}/>
             <p className={style.errorMsg}>{nameError}</p>
-            <Select
+            {/* <Select
                 className={style.selectionBox} 
                 styles={{
                     indicatorsContainer: (baseStyles, state) => ({
@@ -123,7 +125,20 @@ function GetIdentity() {
                 value={selectedGender}
                 options={genders}
                 onChange={handleGenderChange}
-            />
+            /> */}
+            <div>
+                <p className="fs-5">Gender</p>
+                {genders.map((item) => (
+                    <TagButton
+                        key={item.value}
+                        keyValue={item.value}
+                        label={item.label} 
+                        selected={selectedGender === item.value}
+                        onUpdateValue={handleGenderChange}
+                    />
+                ))
+                }
+            </div>
         </div>
     );
 }

@@ -1,6 +1,5 @@
 //Global css must defined at the top and let it get overwritten
-import "rsuite/dist/rsuite.min.css";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 import './styles/App.css';
 
 

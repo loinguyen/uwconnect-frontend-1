@@ -73,18 +73,18 @@ function Profile(){
          
         
         <>
-        <div class={style.logoContainer}>
+        <div className={style.logoContainer}>
             <div >
             <img className={style.profileLogo} src={logo}></img>
             </div>
-            <div class={style.logoText}>
+            <div className={style.logoText}>
             <p >UWConnect</p>
             </div>
         </div>
         
         
         <div className={style.ProgressBar}><MultiStepProgressBar onPageNumberClick={currentStepIndex + 1}/></div>
-        <p>Welcome to UWConnect '{location.state.name}' , let get you setup... </p>
+        <p className="fs-5 fw-light">Welcome to UW Connect, let get you setup... </p>
         <form  onSubmit={onSubmit}>
             
             {/* <div className={style.profileContainer}> */}
