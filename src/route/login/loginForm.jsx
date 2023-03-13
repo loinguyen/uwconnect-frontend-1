@@ -4,6 +4,7 @@ import logo from '../../images/login_logo.png';
 import { Link, Router, useNavigate } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 import ErrorBoundary from '../../components/ErrorBoundary';
+import { Avatar } from "antd";
 
 
 function GetLoginForm() {
@@ -103,7 +104,7 @@ function GetLoginForm() {
         <ErrorBoundary>
         <div data-testid = "login-1" className={style.loginContainer}>
             {/* <form>  */}
-                <img src={logo} alt=""></img>
+                <Avatar className='my-auto' size={190} src={<img src={logo} alt="" />} />
                 <h1 data-testid = "login-2">UWConnect</h1>
                 <input type="text" placeholder="Email" onChange={UpdateEmail}/>
                 <p className={style.errorMsg}>{emailError}</p>

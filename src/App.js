@@ -2,7 +2,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import './styles/App.css';
 
-
 //Our stuffs
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
@@ -11,6 +10,7 @@ import GetSignupForm from './route/signup/signupForm';
 import GetProfileHobbies from './route/profile/hobbies';
 import GetIdentity from './route/profile/identity';
 import GetMakePublic from './route/profile/makePublic';
+import Layout from './components/Layout'
 import Home from './route/home/Home';
 import Profile from "./route/profile/profile";
 
@@ -28,10 +28,12 @@ function App() {
     <Router>
       <Routes>
         <Route exact path='/' element={<div data-testid = "App-1" className='App-header'><GetLoginForm  /></div>}/>
-        <Route exact path='/profile' element={<div className='App-header'><Profile /></div>}/>
-        <Route exact path='/home' element={<div  className='App-header'><Home /></div>}/>
         <Route exact path='/login' element={<div  className='App-header'><GetLoginForm /></div>}/>
         <Route exact path='/register' element={<div  className='App-header'><GetSignupForm /></div>}/>
+        <Route element={<Layout/>}>
+          <Route exact path='/profile' element={<div className='App-header'><Profile /></div>}/>
+          <Route exact path='/home' element={<div  className='App-header'><Home /></div>}/>
+        </Route>
         {/* <Route exact path='/profile/identity' element={<div className='App-header'><GetIdentity /></div>}/>
         <Route exact path='/profile/makePublic' element={<div className='App-header'><GetMakePublic /></div>}/> */}
       </Routes>
