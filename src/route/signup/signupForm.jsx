@@ -3,6 +3,7 @@ import style from '../../styles/formStyle.module.css';
 import logo from '../../images/login_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons'
+import { Avatar } from "antd";
 
 
 function GetSignupForm(){
@@ -132,7 +133,7 @@ function GetSignupForm(){
     return (
         <div data-testid = "signup-1" className={style.loginContainer}>
             {/* <form>  */}
-                <img src={logo} alt=""></img>
+            <   Avatar className='my-auto' size={190} src={<img src={logo} alt="" />} />
                 <h1 >UWConnect</h1>
                 <input type="text" placeholder="Email" onChange={OnEmailChange}/>
                 <p className={style.errorMsg}>{emailError}</p>
