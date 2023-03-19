@@ -155,32 +155,24 @@ label {
     /* margin: 10% auto; */
     /* padding: 80px 0; */
     text-align: center;
-
 }
 
 .profileButtonNext{
     position: absolute;
     /* right: 370px; */
     width: 225px;
-    right: 0px;
-    
-    
-    
+    right: 0px;   
 }
 
 .profileButtonBack{
     position: absolute;
-    
     width: 225px;
-    
 }
 
 .profileLogo{
-
     width: 250px;
     height: 100px;
     /* float: left; */
-
 }
 .profileLogoName{
     display: inline;

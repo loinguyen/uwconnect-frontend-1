@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import Select from 'react-select';
+import { useSelector, useDispatch } from 'react-redux'
+import { setImgURL, setUserName, setFirstName, setLastName, setGender } from '../../redux/profileSlice'
 import style from '../../styles/formStyle.module.css';
-import cat1 from '../../images/cat1.jpeg';
-import cat2 from '../../images/cat2.jpeg';
-import dog1 from '../../images/dog1.jpeg';
-import dog2 from '../../images/dog2.jpeg';
 import TagButton from '../../components/TagButton'
 
 
@@ -35,16 +33,12 @@ A submit button to submit data to create user Profile
 */
 
 function GetIdentity() {
-
+    const dispatch = useDispatch(); //This is used to store a value into Redux store
     //Use `useState` to declare variables and setters to update variable
-
-    const [fName, setFName] = useState("");
-    const [lName, setLName] = useState("");
-    //Make sure to check gender's value when submitting since it could be empty
-    const [gender, setGender] = useState("");
-    const [selectedGender, setSelectedGender] = useState(null);
-    const [profilePic, setProfilePic] = useState("");
-    const [selectedProfilePic, setSelectedProfilePic] = useState(null);
+    const fName = useSelector((state) => state.user.firstName); //retrieve value from Redux store and use as default
+    const lName = useSelector((state) => state.user.lastName);
+    const genderTag = useSelector((state) => state.user.gender);
+    const imgURL = useSelector((state) => state.user.imgURL);
     const [nameError, setNameError] = useState("");
 
     const genders = [
@@ -54,14 +48,15 @@ function GetIdentity() {
     ];
 
     const profilePics = [
-        { value: 'dog1', label: <div><img src={dog1} alt="" height="100px" width="100px"/></div>},
-        { value: 'dog2', label: <div><img src={dog2} alt="" height="100px" width="100px"/></div>},   
-        { value: 'cat1', label: <div><img src={cat1} alt="" height="100px" width="100px"/></div>},
-        { value: 'cat2', label: <div><img src={cat2} alt="" height="100px" width="100px"/></div>}
+        { value: '/images/dog1.jpeg', label: <div><img alt="" src="/images/dog1.jpeg" height="100px" width="100px"/></div>},
+        { value: '/images/dog2.jpeg', label: <div><img alt="" src="/images/dog2.jpeg" height="100px" width="100px"/></div>},   
+        { value: '/images/cat1.jpeg', label: <div><img alt="" src="/images/cat1.jpeg" height="100px" width="100px"/></div>},
+        { value: '/images/cat2.jpeg', label: <div><img alt="" src="/images/cat2.jpeg" height="100px" width="100px"/></div>}
  ];
 
     function UpdateFirstName(event) {
-        setFName(event.target.value);
+        dispatch(setFirstName(event.target.value))
+        dispatch(setUserName(event.target.value.concat(lName)))
 
         if (/^(?=.*[a-zA-Z])(?=.{1,}).*$/.test(event.target.value) === false || /^(?=.*[a-zA-Z])(?=.{1,}).*$/.test(lName) === false)
         {
@@ -73,8 +68,9 @@ function GetIdentity() {
     }
 
     function UpdateLastName(event) {
-        setLName(event.target.value);
-
+        dispatch(setLastName(event.target.value))
+        dispatch(setUserName(fName.concat(event.target.value)))
+        
         if (/^(?=.*[a-zA-Z])(?=.{1,}).*$/.test(fName) === false || /^(?=.*[a-zA-Z])(?=.{1,}).*$/.test(event.target.value) === false)
         {
             setNameError ("First and last names cannot be empty and can only be alphabet letters");
@@ -84,14 +80,21 @@ function GetIdentity() {
         }
     }
 
-    function handleGenderChange(e) {
-        setSelectedGender(e);
-        setGender(e.value);
+    // function handleGenderChange(e) {
+    //     setSelectedGender(e);
+    //     setGenderTag(e.currentTarget.value);
+    //     dispatch(setGender(e.currentTarget.value))
+    // }
+
+    const handleGenderChange = (tag, checked) => {
+        const nextSelectedTag = checked
+          ? tag
+          : '';
+        dispatch(setGender(nextSelectedTag));
     }
 
     function handleProfilePicChange(e) {
-        setSelectedProfilePic(e);
-        setProfilePic(e.value);
+        dispatch(setImgURL(e.value));
     }
 
     return (
@@ -105,13 +108,15 @@ function GetIdentity() {
                         height: '100px',
                     }),
                 }}
+                defaultValue={profilePics.filter(function(list) {
+                    return list.value === imgURL;
+                })}
                 placeholder="--Select Profile Picture--"
-                value={selectedProfilePic}
                 options={profilePics}
                 onChange={handleProfilePicChange}
             />
-            <input type="text" placeholder="First Name" onChange={UpdateFirstName}/>
-            <input type="text" placeholder="Last Name" onChange={UpdateLastName}/>
+            <input type="text" defaultValue={fName} placeholder="First Name" onChange={UpdateFirstName}/>
+            <input type="text" defaultValue={lName} placeholder="Last Name" onChange={UpdateLastName}/>
             <p className={style.errorMsg}>{nameError}</p>
             {/* <Select
                 className={style.selectionBox} 
@@ -133,7 +138,7 @@ function GetIdentity() {
                         key={item.value}
                         keyValue={item.value}
                         label={item.label} 
-                        selected={selectedGender === item.value}
+                        selected={genderTag === item.value}
                         onUpdateValue={handleGenderChange}
                     />
                 ))
