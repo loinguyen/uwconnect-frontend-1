@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^5.0.1",
     "@cometchat-pro/chat": "^3.0.11",
     "@emotion/react": "^11",
     "@reduxjs/toolkit": "^1.9.3",
