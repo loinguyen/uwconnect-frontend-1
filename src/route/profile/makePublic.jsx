@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { setProfileVisible, setAgreement } from '../../redux/profileSlice'
 import style from '../../styles/formStyle.module.css';
 import Switch from 'react-switch';
 
@@ -29,10 +31,10 @@ A submit button to submit data to create user Profile
 */
 
 function GetMakePublic() {
-
+    const dispatch = useDispatch();
     //Use `useState` to declare variables and setters to update variable
-    const [toggle, setToggle] = useState(true);
-    const [userAgreeValue, setUserAgreeValue] = useState(false);
+    const toggle = useSelector((state) => state.user.profileVisible)
+    const userAgreeValue = useSelector((state) => state.user.agreement);
     const [isHover,setHover] = useState(false);
     const [msg, setProfileMsg] = useState("");
 
@@ -53,11 +55,11 @@ function GetMakePublic() {
     }
 
     function handleToggle() {
-        setToggle(!toggle);
+        dispatch(setProfileVisible(!toggle));
     }
     
     function handleUserAgreeValue() {
-        setUserAgreeValue(!userAgreeValue);
+        dispatch(setAgreement(!userAgreeValue));
     }
 
     return (

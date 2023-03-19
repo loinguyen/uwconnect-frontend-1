@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux'
+import { setEmail } from '../../redux/profileSlice'
 import style from '../../styles/formStyle.module.css';
 import logo from '../../images/login_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,6 +9,7 @@ import { Avatar } from "antd";
 
 
 function GetSignupForm(){
+    const dispatch = useDispatch();
     //let history = useHistory();
     var RegisterStatus = false;
     const [isClick, setClickStatus] = useState(false);
@@ -43,6 +46,7 @@ function GetSignupForm(){
         setClickStatus(true);
         
         if (emailCheckError === "" && passError === "" && confirmError === "") {
+            dispatch(setEmail(email)); // save email to Redux
             fetch(process.env.REACT_APP_API_LINK + '/user/register', {
             //fetch('http://127.0.0.1:5000/user/register', {
                 method: 'POST',
@@ -51,16 +55,12 @@ function GetSignupForm(){
                 'Content-Type': 'application/json',
                     },
                 body: JSON.stringify({
-                email: email,
-                password: pass,
+                    email: email,
+                    password: pass,
                     })
                 })
                 .then(response => response.json())
                 .then(json => setRegisterMessage(json.message));
-
-            if (msg !== "success"){
-
-            }
             //setRegisterMessage(JSON.stringify({email: Email, password: Pass}));
         }
     }
