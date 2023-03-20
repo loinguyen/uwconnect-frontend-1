@@ -19,8 +19,6 @@ const Home = () => {
     var appID = process.env.COMETCHAT_APPID;
     const region = "us";
     var authKey = process.env.COMETCHAT_AUTH_KEY;
-    appID = "2341304f6c94b6b0"
-    authKey = "62a7f4ed9a36e08fe7c0c71c5435fb4fea1e452b"
     console.log(process.env) // undefined
     console.log(process.env.REACT_APP_API_LINK)  // localhost.....
 
