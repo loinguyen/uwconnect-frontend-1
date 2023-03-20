@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Select from 'react-select';
 import { useSelector, useDispatch } from 'react-redux'
-import { setImgURL, setUserName, setFirstName, setLastName, setGender } from '../../redux/profileSlice'
+import { setImgURL, setUserName, setFirstName, setLastName, setGender } from '../../redux/profile/profileSlice'
 import style from '../../styles/formStyle.module.css';
 import TagButton from '../../components/TagButton'
 

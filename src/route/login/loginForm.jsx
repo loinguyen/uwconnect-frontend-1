@@ -5,6 +5,8 @@ import { Link, Router, useNavigate } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import { Avatar } from "antd";
+import { setLoggedIn } from "../../redux/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 
 function GetLoginForm() {
@@ -18,6 +20,9 @@ function GetLoginForm() {
     const [passwordType, setPasswordType] = useState("password");
     // const [PassError,setPWerror] = useState(""); 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+
 
     function TogglePass() {
         if (passwordType === "password") {
@@ -45,9 +50,19 @@ function GetLoginForm() {
             checkUserOnly: false,
                 })
             })
-            .then(response => response.json())
+            .then(response => {
+                window.alert("server login response " + " " + response.status)
+                if (response.status === 200){
+                    login();
+                }
+                return response.json()
+            })
             .then(json => setRegisterMessage(json.message));
         }     
+    }
+
+    function login(){
+        dispatch(setLoggedIn(true));
     }
 
     function CheckLoginStatus() {

@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom';
 import { redirect } from "react-router-dom";
 import { useMultistepForm } from "../../components/MultistepForm.ts";
 
 import GetProfileHobbies from "./hobbies";
-import Enrollment from "./enrollment";
+import Enrollment from "./Enrollment";
 import GetIdentity from "./identity";
 import GetMakePublic from "./makePublic";
 import MultiStepProgressBar from "../../components/MultistepProgressBar";
 import style from '../../styles/formStyle.module.css';
 import logo from '../../images/login_logo.png';
+import { setLoggedIn } from "../../redux/auth/authSlice";
 
 // type FormData = {
 
@@ -29,6 +30,7 @@ import logo from '../../images/login_logo.png';
 
 function Profile(){
     //retrieve profile info from Redux
+    const dispatch = useDispatch();
     const email = useSelector((state) => state.user.email);
     const userName = useSelector((state) => state.user.userName);
     const firstName = useSelector((state) => state.user.firstName);
@@ -42,6 +44,7 @@ function Profile(){
     const tags = useSelector((state) => state.user.tags);
     const profileVisible = useSelector((state) => state.user.profileVisible);
     const agreement = useSelector((state) => state.user.agreement);
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
     const id = '';
 
     const { steps, currentStepIndex, step,isFirstStep,isLastStep,back,next } = useMultistepForm([<GetIdentity/>,<Enrollment/>,<GetProfileHobbies/>,<GetMakePublic/>]);
@@ -50,6 +53,10 @@ function Profile(){
     const [submitError, setSubmitError] = useState("");
     const [msg, setProfileMessage] = useState("");
     const location = useLocation();
+
+    function login(){
+        dispatch(setLoggedIn(true));
+    }
 
     function MouseOver() {
         setHover(true);
@@ -98,7 +105,12 @@ function Profile(){
                             id: '',
                             })
                         })
-                        .then(response => response.json())
+                        .then(response => {
+                            if (response.status === 200){
+                                login();
+                            }
+                            return response.json()
+                        })
                         .then(json => setProfileMessage(json.message));
             }
             else {
