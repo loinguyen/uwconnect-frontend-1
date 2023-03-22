@@ -5,7 +5,7 @@ import { redirect } from "react-router-dom";
 import { useMultistepForm } from "../../components/MultistepForm.ts";
 
 import GetProfileHobbies from "./hobbies";
-import Enrollment from "./Enrollment";
+import Enrollment from "./enrollment";
 import GetIdentity from "./identity";
 import GetMakePublic from "./makePublic";
 import MultiStepProgressBar from "../../components/MultistepProgressBar";
