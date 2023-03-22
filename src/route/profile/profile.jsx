@@ -76,12 +76,14 @@ function Profile(){
 
     function onSubmit(e) {
         e.preventDefault();
-        next();
+        if (!isLastStep) {
+            next();
+        }
     }
 
     function handleSubmit() {
         if (isLastStep) {
-            if (firstName != '' && lastName != '' && gender != '' && imgURL != '') {
+            if (firstName != '' && lastName != '' && gender != '' && imgURL != '' && agreement) {
                 setSubmitError("")
                 fetch(process.env.REACT_APP_API_LINK + '/user/profile', {
                         method: 'POST',
@@ -91,18 +93,17 @@ function Profile(){
                             },
                         body: JSON.stringify({
                             email: email,
-                            userName: userName,
-                            firstName: firstName,
-                            lastName: lastName,
-                            imgURL: imgURL,
+                            username: userName,
+                            first_name: firstName,
+                            last_name: lastName,
+                            image_url: imgURL,
                             gender: gender,
                             faculty: faculty,
                             program: program,
                             year: year,
                             courses: courses,
                             tags: tags,
-                            profileVisible: profileVisible,
-                            id: '',
+                            profile_visible: profileVisible
                             })
                         })
                         .then(response => {
@@ -118,7 +119,7 @@ function Profile(){
             }
         }
         else {
-            if (firstName != '' && lastName != '' && gender != '' && imgURL != '') {
+            if (firstName != '' && lastName != '' && gender != '' && imgURL != '' && agreement) {
                 setSubmitError("")
             }
         }
