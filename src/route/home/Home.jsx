@@ -16,21 +16,14 @@ const Home = () => {
     //     </div>
     // );
     
-    const appID = process.env.COMETCHAT_APPID;
+    var appID = process.env.COMETCHAT_APPID;
     const region = "us";
-    const authKey = process.env.COMETCHAT_AUTH_KEY;
+    var authKey = process.env.COMETCHAT_AUTH_KEY;
+    console.log(process.env) // undefined
+    console.log(process.env.REACT_APP_API_LINK)  // localhost.....
 
-    useEffect(() =>{
-        fetch('http://localhost:5000/user/who', { credentials: 'include' })
-        .then(response => {
-            if (response.status === 403) {
-                window.location.href = '/';
-            }
-            return response.json()
-        })
-        .then(response => {
-
-            console.log("trying to init cometchat", response.email.split('@')[0])
+    useEffect(() => {
+        console.log("trying to init cometchat", "q32ye")
 
             const appSetting = new CometChat.AppSettingsBuilder()
                 .subscribePresenceForAllUsers()
@@ -39,7 +32,7 @@ const Home = () => {
             CometChat.init(appID, appSetting).then(
                 () => {
                     console.log("Initialization completed successfully");
-                    CometChat.login(response.email.split('@')[0], authKey);
+                    CometChat.login("q32ye", authKey);
                 },
                 (error) => {
                     console.log("Initialization failed with error:", error);
@@ -54,10 +47,9 @@ const Home = () => {
                 }
             )
 
-            setUid(response.email.split('@')[0]);
+            setUid("q32ye");
+            })
 
-        });
-    })
     
     return (
         <div style={{ width: "100wh", height: "100vh" }}>
