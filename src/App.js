@@ -1,6 +1,7 @@
 //Global css must defined at the top and let it get overwritten
 import "bootstrap/dist/css/bootstrap.min.css";
 import './styles/App.css';
+import './styles/chatUI-override.css';
 
 //Our stuffs
 import React, { useState, useEffect } from 'react';

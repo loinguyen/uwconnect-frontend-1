@@ -1,24 +1,22 @@
 import { CometChat } from "@cometchat-pro/chat";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { CometChatUI } from "../../cometchat-pro-react-ui-kit/CometChatWorkspace/src";
-
+import { CometChatUI, CometChatMessages, CometChatConversationList, CometChatUserList } from "../../cometchat-pro-react-ui-kit/CometChatWorkspace/src";
+import { Button } from "antd";
+import { WeiboCircleOutlined } from '@ant-design/icons'
+import GetRecommendation from '../../components/Recommendation'
+import '../../styles/home.css'
 
 const Home = () => {
     const [uid, setUid] = useState(null);
-
-    // const location = useLocation();
-
-    // return (
-    //     <div className={style.loginContainer}>
-    //             <p>Welcome to UWConnect '{location.state.name}' </p>   
-    //             <p>This is your home page</p>
-    //     </div>
-    // );
+    const [conversationIdMap, setConversationIdMap] = useState(new Map());
+    const [openConnection, setOpenConnection] = useState(false);
     
-    const appID = process.env.COMETCHAT_APPID;
+    let appID = process.env.REACT_APP_COMETCHAT_APPID;
+    // appID = "2350391ebd6250ec"
     const region = "us";
-    const authKey = process.env.COMETCHAT_AUTH_KEY;
+    let authKey = process.env.REACT_APP_COMETCHAT_AUTH_KEY;
+    // authKey = "af734d521fc4b5a07459b30ea83acb47f97314e5"
 
     useEffect(() =>{
         fetch('http://localhost:5000/user/who', { credentials: 'include' })
@@ -58,12 +56,48 @@ const Home = () => {
 
         });
     })
+
+    const handleConversationSelect = (conversationWith, conversationType) => {
+        for (let [key, value] of conversationIdMap) { 
+            conversationIdMap.set(key, false)
+        }
+        setConversationIdMap(new Map(conversationIdMap.set(conversationWith.uid, true)))
+    }
+
+    const openConnectionPage = () => {
+        setOpenConnection(!openConnection)
+    }
     
     return (
-        <div style={{ width: "100wh", height: "100vh" }}>
-            {/* {console.log('rerendered')} */}
-            {uid && <CometChatUI />}
-        </div>
+        <div className="position-fixed" style={{inset: '0', top: '5vh'}}>
+            {uid && 
+                <div className="col-12 d-flex" style={{height: '95vh'}}>
+                    <div className="col-3 h-100 align-self-end" style={{backgroundColor: 'rgba(255,255,255,0.1)'}}>
+                        <div className="m-auto d-flex align-item-center pb-1" style={{height: '80px'}}>
+                            <Button type="primary" className="connect-me-button h-100 m-auto w-100" icon={<WeiboCircleOutlined style={{ fontSize: '150%'}} />} 
+                            onClick={openConnectionPage}>
+                                    Connect Me
+                            </Button>
+                        </div>
+                        {/* <CometChatConversationList onItemClick={handleConversationSelect}/> */}
+                        <CometChatUserList friendsOnly={true} onItemClick={handleConversationSelect}/>
+                    </div>
+                    { !openConnection &&
+                        [...conversationIdMap.keys()].map(k => (
+                            conversationIdMap.get(k) && <div className="col-9 h-100">
+                                <CometChatMessages chatWithUser={k}/>
+                            </div>
+                        ))
+                        
+                    }
+                    { openConnection && 
+                        <GetRecommendation />
+                    }
+                    
+                </div>
+            }
+             
+         </div>
     );
 
     }

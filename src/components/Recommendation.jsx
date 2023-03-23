@@ -33,8 +33,8 @@ function GetRecommendation(){
                             )})
 
     return (
-        <div style={{width:"auto" , height: 470, overflow: "auto" }}>
-        <div style={{width:1100 , height: "auto", overflow: "auto" , columns : 2, display:"flex", flexWrap: "wrap"}}>
+        <div style={{width:"100%" , height: "auto", overflow: "auto" }}>
+        <div className="m-2" style={{height: "auto", overflow: "auto" , columns : 2, display:"flex", flexWrap: "wrap"}}>
             {
                 Recommendation
                 
