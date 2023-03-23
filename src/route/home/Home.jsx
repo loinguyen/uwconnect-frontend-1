@@ -5,7 +5,7 @@ import { CometChatUI, CometChatMessages, CometChatConversationList, CometChatUse
 import { Button } from "antd";
 import { WeiboCircleOutlined } from '@ant-design/icons'
 import GetRecommendation from '../../components/Recommendation'
-import '../../styles/home.css'
+import styles from'../../styles/home.css'
 
 const Home = () => {
     const [uid, setUid] = useState(null);
