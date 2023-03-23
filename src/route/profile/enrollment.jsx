@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { setFaculty, setYear, setProgram, setCourses } from '../../redux/profileSlice'
+import { setFaculty, setYear, setProgram, setCourses } from '../../redux/profile/profileSlice'
 import style from '../../styles/formStyle.module.css';
 import {redirect} from "react-router-dom";
 import {useLocation} from 'react-router-dom';

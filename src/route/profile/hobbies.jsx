@@ -1,7 +1,7 @@
 import { async } from "q";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { setTags } from '../../redux/profileSlice'
+import { setTags } from '../../redux/profile/profileSlice'
 import TagButton from '../../components/TagButton'
 import style from '../../styles/formStyle.module.css';
 import { ToggleButtonGroup } from "react-bootstrap";

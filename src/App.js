@@ -16,29 +16,44 @@ import Home from './route/home/Home';
 import Profile from "./route/profile/profile";
 
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
-  redirect,
-  Link
+  useLocation
 } from "react-router-dom";
+import { useSelector } from "react-redux";
   
 
 function App() {
+
+  const location = useLocation();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn )
+  
+  useEffect(() => {
+    // This function will run before any route rendered
+    if (location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register') {
+      if (!isLoggedIn){
+        window.location.href = '/';
+      }
+    } else{
+      if (isLoggedIn){
+        window.location.href = '/home';
+      }
+    }
+  }, [location]);
+
+
   return (
-    <Router>
-      <Routes>
-        <Route exact path='/' element={<div data-testid = "App-1" className='App-header'><GetLoginForm  /></div>}/>
-        <Route exact path='/login' element={<div  className='App-header'><GetLoginForm /></div>}/>
-        <Route exact path='/register' element={<div  className='App-header'><GetSignupForm /></div>}/>
-        <Route element={<Layout/>}>
-          <Route exact path='/profile' element={<div className='App-header'><Profile /></div>}/>
-          <Route exact path='/home' element={<div  className='App-header'><Home /></div>}/>
-        </Route>
-        {/* <Route exact path='/profile/identity' element={<div className='App-header'><GetIdentity /></div>}/>
-        <Route exact path='/profile/makePublic' element={<div className='App-header'><GetMakePublic /></div>}/> */}
-      </Routes>
-    </Router>
+    <Routes>
+      <Route exact path='/' element={<div data-testid = "App-1" className='App-header'><GetLoginForm  /></div>}/>
+      <Route exact path='/login' element={<div  className='App-header'><GetLoginForm /></div>}/>
+      <Route exact path='/register' element={<div  className='App-header'><GetSignupForm /></div>}/>
+      <Route element={<Layout/>}>
+        <Route exact path='/profile' element={<div className='App-header'><Profile /></div>}/>
+        <Route exact path='/home' element={<div  className='App-header'><Home /></div>}/>
+      </Route>
+      {/* <Route exact path='/profile/identity' element={<div className='App-header'><GetIdentity /></div>}/>
+      <Route exact path='/profile/makePublic' element={<div className='App-header'><GetMakePublic /></div>}/> */}
+    </Routes>
     )
   // <div className='App-header'><GetSignupForm /></div>;
 }

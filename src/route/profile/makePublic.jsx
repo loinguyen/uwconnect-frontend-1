@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { setProfileVisible, setAgreement } from '../../redux/profileSlice'
+import { setProfileVisible, setAgreement } from '../../redux/profile/profileSlice'
 import style from '../../styles/formStyle.module.css';
 import Switch from 'react-switch';
 
