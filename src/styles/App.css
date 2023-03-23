@@ -66,3 +66,7 @@
 }
 
 /* Custom Scroll Bar End */
+
+.list__item.selected {
+  background-color: rgba(0,0,0,0.3);
+}
