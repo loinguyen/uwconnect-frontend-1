@@ -86,33 +86,33 @@ function Profile(){
             if (firstName != '' && lastName != '' && gender != '' && imgURL != '' && agreement) {
                 setSubmitError("")
                 fetch(process.env.REACT_APP_API_LINK + '/user/profile', {
-                        method: 'POST',
-                        headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                            },
-                        body: JSON.stringify({
-                            email: email,
-                            username: userName,
-                            first_name: firstName,
-                            last_name: lastName,
-                            image_url: imgURL,
-                            gender: gender,
-                            faculty: faculty,
-                            program: program,
-                            year: year,
-                            courses: courses,
-                            tags: tags,
-                            profile_visible: profileVisible
-                            })
+                    method: 'POST',
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                        },
+                    body: JSON.stringify({
+                        email: email,
+                        username: userName,
+                        first_name: firstName,
+                        last_name: lastName,
+                        image_url: imgURL,
+                        gender: gender,
+                        faculty: faculty,
+                        program: program,
+                        year: year,
+                        courses: courses,
+                        tags: tags,
+                        profile_visible: profileVisible
                         })
-                        .then(response => {
-                            if (response.status === 200){
-                                login();
-                            }
-                            return response.json()
-                        })
-                        .then(json => setProfileMessage(json.message));
+                })
+                .then(response => {
+                    if (response.status === 200){
+                        login();
+                    }
+                    return response.json()
+                })
+                .then(json => setProfileMessage(json.message));
             }
             else {
                 setSubmitError("Please fill up profile page and agree to user agreement")

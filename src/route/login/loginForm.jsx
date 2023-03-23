@@ -7,6 +7,7 @@ import ErrorBoundary from '../../components/ErrorBoundary';
 import { Avatar } from "antd";
 import { setLoggedIn } from "../../redux/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { setEmail } from '../../redux/profile/profileSlice'
 
 
 function GetLoginForm() {
@@ -106,6 +107,7 @@ function GetLoginForm() {
     React.useEffect(() => {
         if (msg == "success") {
             loginStatus = true;
+            dispatch(setEmail(email));
         }
 
         if (msg == "fail") {
