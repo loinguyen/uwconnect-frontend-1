@@ -1,3 +1,6 @@
+# .env config file
+.env
+
 # jsonlock
 package-lock.json
 

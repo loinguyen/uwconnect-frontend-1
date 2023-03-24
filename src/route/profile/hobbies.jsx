@@ -53,9 +53,10 @@ function GetProfileHobbies() {
 
     //https://rsuitejs.com/components/tag-picker/
     return (
-        <div className={style.loginContainer}>
+        <div >
             <div className="profileHobbiesTag">
-                <h1>My Hobbies</h1>
+                {/* <h3>Here is a list of hobbies, select those that you are interest in...</h3> */}
+                <br></br>
                 <div className="mw-100 d-flex justify-content-center flex-wrap" style={{overflow:'auto', maxHeight: '31vh'}}>
                 {
                     hobbiesList.map((item) => (

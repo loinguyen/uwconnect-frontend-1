@@ -32,6 +32,51 @@ A check box as user accept the user agreement.
 A submit button to submit data to create user Profile
 */
 
+const selectStyle = {
+    control: (base, state) => ({
+      ...base,
+      background: "#282c34",
+      
+      // match with the menu
+      borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+      // Overwrittes the different states of border
+      borderColor: state.isFocused ? "white" : "white",
+      // Removes weird border around container
+      boxShadow: state.isFocused ? null : null,
+      "&:hover": {
+        // Overwrittes the different states of border
+        borderColor: state.isFocused ? "white" : "white"
+      }
+    }),
+    menu: base => ({
+      ...base,
+      // override border radius to match the box
+      color: 'white',
+      borderRadius: 0,
+      // kill the gap
+      marginTop: 0
+    }),
+    
+    menuList :(baseStyles, state) =>
+     ({...baseStyles,
+    
+      color: 'black'}),
+    singleValue: (base, state) => ({
+        ...base,
+        color: state.isFocused ? 'orange' : 'white'}),
+    placeholder: (base, state) => ({
+        ...base,
+        color: 'white'}),
+    multiValue : (baseStyles, state) => ({...baseStyles,backgroundColor: 'orange'}),
+    // input : base => ({color:"white"})  
+    // valueContainer : base => ({color:"white"})
+    indicatorsContainer: (baseStyles, state) => ({
+        ...baseStyles,
+        height: '100px',
+    }),
+  };
+
+
 function GetIdentity() {
     const dispatch = useDispatch(); //This is used to store a value into Redux store
     //Use `useState` to declare variables and setters to update variable
@@ -98,16 +143,12 @@ function GetIdentity() {
     }
 
     return (
-        <div className={style.loginContainer}>
-            <h1>Profile</h1>
+        <div >
+            {/* <h3>Tell us more about yourself...</h3> */}
+            <br></br>
             <Select
-                className={style.selectionBox}
-                styles={{
-                    indicatorsContainer: (baseStyles, state) => ({
-                        ...baseStyles,
-                        height: '100px',
-                    }),
-                }}
+                // className={style.selectionBox}
+                styles={selectStyle}
                 defaultValue={profilePics.filter(function(list) {
                     return list.value === imgURL;
                 })}
@@ -115,8 +156,8 @@ function GetIdentity() {
                 options={profilePics}
                 onChange={handleProfilePicChange}
             />
-            <input type="text" defaultValue={fName} placeholder="First Name" onChange={UpdateFirstName}/>
-            <input type="text" defaultValue={lName} placeholder="Last Name" onChange={UpdateLastName}/>
+            <input className={style.profileInput} type="text" defaultValue={fName} placeholder="First Name" onChange={UpdateFirstName}/>
+            <input className={style.profileInput} type="text" defaultValue={lName} placeholder="Last Name" onChange={UpdateLastName}/>
             <p className={style.errorMsg}>{nameError}</p>
             {/* <Select
                 className={style.selectionBox} 
@@ -132,7 +173,8 @@ function GetIdentity() {
                 onChange={handleGenderChange}
             /> */}
             <div>
-                <p className="fs-5">Gender</p>
+                {/* <p className="fs-5" >Gender</p> */}
+                
                 {genders.map((item) => (
                     <TagButton
                         key={item.value}
