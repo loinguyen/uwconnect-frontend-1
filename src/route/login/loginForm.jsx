@@ -52,7 +52,6 @@ function GetLoginForm() {
                 })
             })
             .then(response => {
-                window.alert("server login response " + " " + response.status)
                 if (response.status === 200){
                     login();
                 }
