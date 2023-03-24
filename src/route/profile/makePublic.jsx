@@ -63,15 +63,18 @@ function GetMakePublic() {
     }
 
     return (
-        <div className={style.loginContainer}>
-            <h1>Make Profile Public</h1>
+        <div >
+            {/* <h3>We're almost done! please take a moment to read our terms and conditions...</h3> */}
+            <br></br>
             <label style={{ fontSize:30, padding: "0 10px 0 0", display:"inline" }}>Show me on UWConnect</label>
             <Switch
                 display="inline"
                 onChange={handleToggle}
                 checked={toggle}
-                onColor="#86d3ff"
-                onHandleColor="#2693e6"
+                // onColor="#86d3ff"
+                onColor="#FFAC1C"
+                // onHandleColor="#2693e6"
+                onHandleColor="#FFAC1C"
                 handleDiameter={30}
                 uncheckedIcon={false}
                 checkedIcon={false}
@@ -82,12 +85,12 @@ function GetMakePublic() {
             />
             <div>
                 <input
-                    style={{ display:"inline", width:10}}
+                    style={{ display:"inline", width:20,height: 20, color: "orange"}}
                     type="checkbox"
                     checked={userAgreeValue}
                     onChange={handleUserAgreeValue}
                 />
-                <label style = {{display:"inline", fontSize:18}}>I have read and agree to the <a style={{ color:"dodgerblue", fontSize:18 }}>terms of service</a></label>
+                <label style = {{display:"inline", fontSize:18}}>I have read and agree to the <a style={{ color:"orange", fontSize:18 }}>terms of service</a></label>
             </div>
             {/* <button 
                     onClick={ButtonClick}

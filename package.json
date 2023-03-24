@@ -29,6 +29,7 @@
     "react-select": "^5.7.0",
     "react-step-progress-bar": "^1.0.3",
     "react-switch": "^7.0.0",
+    "react-tsparticles": "^2.9.3",
     "redux-persist": "^6.0.0",
     "rimraf": "^3.0.2",
     "web-vitals": "^2.1.4"
