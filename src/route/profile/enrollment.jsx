@@ -8,6 +8,46 @@ import Select from "react-select";
 import DatePicker from "react-datepicker";
 import { Border } from "react-bootstrap-icons";
 
+const selectStyle = {
+    control: (base, state) => ({
+      ...base,
+      background: "#282c34",
+      
+      // match with the menu
+      borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+      // Overwrittes the different states of border
+      borderColor: state.isFocused ? "white" : "white",
+      // Removes weird border around container
+      boxShadow: state.isFocused ? null : null,
+      "&:hover": {
+        // Overwrittes the different states of border
+        borderColor: state.isFocused ? "white" : "white"
+      }
+    }),
+    menu: base => ({
+      ...base,
+      // override border radius to match the box
+      color: 'white',
+      borderRadius: 0,
+      // kill the gap
+      marginTop: 0
+    }),
+    
+    menuList :(baseStyles, state) =>
+     ({...baseStyles,
+    
+      color: 'black'}),
+    singleValue: (base, state) => ({
+        ...base,
+        color: state.isFocused ? 'orange' : 'white'}),
+    placeholder: (base, state) => ({
+        ...base,
+        color: 'white'}),
+    multiValue : (baseStyles, state) => ({...baseStyles,backgroundColor: 'orange'})
+    // input : base => ({color:"white"})  
+    // valueContainer : base => ({color:"white"})
+  };
+
 // type UserFormProps = {
 //     program: string
 //     admission_year: string
@@ -73,15 +113,16 @@ function Enrollment({program,admission_year,faculty,course}){
     }
 
     return (
-       <div className={style.loginContainer}>
-            <h1>Enrollment Info</h1>
+       <div >
+            {/* <p >What are you enrolling in this term?</p> */}
+            <br></br>
             {/* <label>Faculty</label> */}
             <Select
                 defaultValue={facultyArray.filter(function(list) {
                     return list.value === facultyVal;
                 })}
                 placeholder = "Faculty" 
-                styles={{menuList :(baseStyles, state) => ({...baseStyles,color: 'black'})}}  
+                styles={selectStyle}  
                 options={facultyArray} 
                 onChange={handleFacultyChange}
             />
@@ -92,7 +133,7 @@ function Enrollment({program,admission_year,faculty,course}){
                     return list.value === yearVal;
                 })}
                 placeholder = "Admission Year" 
-                styles={{menuList :(baseStyles, state) => ({...baseStyles,color: 'black'}),}}  
+                styles={selectStyle}  
                 options={yearArray}  
                 onChange={handleYearChange}
             />
@@ -102,7 +143,7 @@ function Enrollment({program,admission_year,faculty,course}){
                     return list.value === programVal;
                 })}
                 placeholder = "Program" 
-                styles={{menuList :(baseStyles, state) => ({...baseStyles,color: 'black'}),}}  
+                styles={selectStyle}  
                 options={programArray} 
                 onChange={handleProgramChange} 
             />
@@ -111,7 +152,7 @@ function Enrollment({program,admission_year,faculty,course}){
                 defaultValue={courseArray.filter(obj => courseVal.includes(obj.value))}
                 isMulti
                 placeholder="Courses" 
-                styles={{menuList :(baseStyles, state) => ({...baseStyles,color: 'black'}),multiValue : (baseStyles, state) => ({...baseStyles,backgroundColor: 'orange'}) }} 
+                styles={selectStyle} 
                 className="Select-box" 
                 options={courseArray} 
                 onChange={handleCourseChange}
