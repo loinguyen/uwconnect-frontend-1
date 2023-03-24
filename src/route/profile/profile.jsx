@@ -130,12 +130,15 @@ function Profile(){
     }, [msg]);
     
     return (
+
+        <>
         <div className={style.profileForm}> 
       {/* className="row mx-auto fs-5 fw-light" */}
        {currentStepIndex == 0 && <p className= "row mx-auto fs-5 fw-light" >Welcome to UW Connect, let get you setup... </p>}
        {currentStepIndex == 1 && <p className= "row mx-auto fs-5 fw-light">What are you enrolling in this term? </p>}
        {currentStepIndex == 2 && <p className= "row mx-auto fs-5 fw-light">Tell us more about your hobbies... </p>}
        {currentStepIndex == 3 && <p className= "row mx-auto fs-5 fw-light">We're almost done! </p>}
+       <br></br>
        {/* className="row col-4" */}
         <div ><MultiStepProgressBar onPageNumberClick={currentStepIndex + 1}/></div>
         <form  onSubmit={onSubmit}>
@@ -172,6 +175,8 @@ function Profile(){
         </form>
     
         </div>
+
+        </>
 
     );
 }
