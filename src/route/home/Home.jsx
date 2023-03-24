@@ -6,10 +6,13 @@ import { Button } from "antd";
 import { WeiboCircleOutlined } from '@ant-design/icons'
 import GetRecommendation from '../../components/Recommendation'
 import styles from'../../styles/home.css'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../../redux/profile/profileSlice";
 
 const Home = () => {
+    const dispatch = useDispatch();
     const [uid, setUid] = useState(null);
+    const [userData, setUserData] = useState(null);
     const [conversationIdMap, setConversationIdMap] = useState(new Map());
     const [openConnection, setOpenConnection] = useState(false);
     const email = useSelector((state) => state.user.email);
@@ -19,6 +22,7 @@ const Home = () => {
     let authKey = process.env.REACT_APP_COMETCHAT_AUTH_KEY;
 
     useEffect(() => {
+        getUserDetail();
         console.log("trying to init cometchat", email.split("@")[0])
 
             const appSetting = new CometChat.AppSettingsBuilder()
@@ -44,7 +48,16 @@ const Home = () => {
             )
 
             setUid(email.split("@")[0]);
-    })
+    },[email])
+
+    const getUserDetail = () => {
+        fetch(process.env.REACT_APP_API_LINK + `/user/profile?email=${encodeURIComponent(email)}`, { credentials: 'include' })
+        .then(response => response.json())
+        .then(user => {
+            setUserData(user)
+            dispatch(setUser(user))
+        })
+    } 
 
     const handleConversationSelect = (conversationWith, conversationType) => {
         for (let [key, value] of conversationIdMap) { 
@@ -79,9 +92,9 @@ const Home = () => {
                         ))
                         
                     }
-                    { openConnection && 
-                        <GetRecommendation />
-                    }
+                    <div className="col-9 h-100" style={{display: openConnection ? 'block': 'none'}}>
+                         <GetRecommendation />
++                   </div>
                     
                 </div>
             }

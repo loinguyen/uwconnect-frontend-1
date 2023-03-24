@@ -70,3 +70,13 @@
 .list__item.selected {
   background-color: rgba(0,0,0,0.3);
 }
+
+/* override bootstrap css affect antd **/
+.ant-btn img,svg {
+  vertical-align: baseline !important;
+}
+
+.round-btn {
+  background-color: #FFEA30;
+  color: black;
+}

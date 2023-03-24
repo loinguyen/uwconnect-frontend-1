@@ -5,20 +5,23 @@ export const profileSlice = createSlice({
     initialState: {
         email: '',
         userName: '',
-        firstName: '',
-        lastName: '',
-        imgURL: '',
+        first_Name: '',
+        last_Name: '',
+        img_url: '',
         gender: '',
         faculty: '',
         program: '',
         year: 0,
         courses: [],
         tags: [],
-        profileVisible: true,
+        profile_visible: true,
         agreement: false,
         id: '',
     },
     reducers: {
+        setUser: (state, action) => {
+            Object.assign(state, action.payload)
+        },
         setEmail: (state, action) => {
             state.email = action.payload
         },
@@ -64,6 +67,6 @@ export const profileSlice = createSlice({
     },
 })
 
-export const { setCourses, setEmail, setUserName, setFaculty, setGender, setID, setImgURL, setProfileVisible, setProgram, setTags, setFirstName, setLastName, setAgreement, setYear } = profileSlice.actions
+export const { setUser, setCourses, setEmail, setUserName, setFaculty, setGender, setID, setImgURL, setProfileVisible, setProgram, setTags, setFirstName, setLastName, setAgreement, setYear } = profileSlice.actions
 
 export default profileSlice.reducer
