@@ -32,17 +32,17 @@ function Profile(){
     //retrieve profile info from Redux
     const dispatch = useDispatch();
     const email = useSelector((state) => state.user.email);
-    const userName = useSelector((state) => state.user.userName);
-    const firstName = useSelector((state) => state.user.firstName);
-    const lastName = useSelector((state) => state.user.lastName);
-    const imgURL = useSelector((state) => state.user.imgURL);
+    const userName = useSelector((state) => state.user.username);
+    const firstName = useSelector((state) => state.user.first_name);
+    const lastName = useSelector((state) => state.user.last_name);
+    const imgURL = useSelector((state) => state.user.image_url);
     const gender = useSelector((state) => state.user.gender);
     const faculty = useSelector((state) => state.user.faculty);
     const program = useSelector((state) => state.user.program);
     const year = useSelector((state) => state.user.year);
     const courses = useSelector((state) => state.user.courses);
     const tags = useSelector((state) => state.user.tags);
-    const profileVisible = useSelector((state) => state.user.profileVisible);
+    const profileVisible = useSelector((state) => state.user.profile_visible);
     const agreement = useSelector((state) => state.user.agreement);
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
     const id = '';

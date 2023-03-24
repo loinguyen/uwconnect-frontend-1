@@ -29,8 +29,8 @@ function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn )
   
   useEffect(() => {
-    // This function will run before any route rendered
-    if (location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register' && location.pathname !== '/profile') {
+    // This function will run before any route rendered, FIX THIS PART, LOGIC ERROR!!!
+    if (location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register') {
       if (!isLoggedIn){
         window.location.href = '/';
       }

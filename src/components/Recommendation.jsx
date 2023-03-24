@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import style from '../styles/recommendation.css'
 import {redirect} from "react-router-dom";
 import {useLocation} from 'react-router-dom';
@@ -37,15 +37,16 @@ function GetRecommendation(){
     const [openPreferencePopup, setOpenPreferencePopup] = useState(false);
     let userDetail = useSelector((state) => state.user)
 
-    let tempSelectedCourses = [];
-    let tempSelectedHobbies = [];
-    useState(() => {
+    let tempSelectedCourses = [...selectedCourses];
+    let tempSelectedHobbies = [...selectedHobbies];
+    useEffect(() => {
         getListClass();
         getListHobby();
-        getRecommendationConnections();
-    })
+        let userRequest = createUserRequest(userDetail);
+        getRecommendationConnections(userRequest);
+    }, [selectedCourses, selectedHobbies, userDetail])
 
-    function getListClass() {
+    const getListClass = () => {
         fetch(process.env.REACT_APP_API_LINK + '/enrollment', { credentials: 'include' })
         .then(response => response.json())
         .then(json => {
@@ -54,7 +55,7 @@ function GetRecommendation(){
         })
     }
 
-    function getListHobby() {
+    const getListHobby= () => {
         fetch(process.env.REACT_APP_API_LINK + '/hobbies', { credentials: 'include' })
           .then(response => response.json()) //Arrow function to turn fetched data into json
           .then(json => {
@@ -63,15 +64,20 @@ function GetRecommendation(){
         }) //Arrow function to get hobbies
     }
 
-    function getRecommendationConnections() {
-
-    }
-
-    const getContainer = (id) => {
-        return () => {
-          if (!id || typeof document === 'undefined') return null;
-          return document.getElementById(id);
-        }
+    const getRecommendationConnections= (userRequest) => {
+        fetch(process.env.REACT_APP_API_LINK + '/user/get_recommendation', {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+                },
+            body: JSON.stringify(userRequest),
+            credentials: 'include'
+        })
+        .then(response => {
+            return response.json()
+        })
+        .then(json => console.log(json));
     }
 
     const openPreferenceEdit = () => {
@@ -80,11 +86,12 @@ function GetRecommendation(){
     const submitPreferenceEdit = () => {
         setSelectedCourses(tempSelectedCourses)
         setSelectedHobbies(tempSelectedHobbies)
-        let userRequest = {}
-        Object.assign(userRequest, userDetail);
+        let userRequest = createUserRequest(userDetail)
         userRequest.courses = tempSelectedCourses.map((item) => item.value)
         userRequest.tags = tempSelectedHobbies.map((item) => item.value)
-        console.log(userRequest)
+        if (!jsonstring) {
+            getRecommendationConnections(userRequest)
+        }
         setOpenPreferencePopup(false);
     };
     const closePreferenceEdit = () => {
@@ -100,8 +107,16 @@ function GetRecommendation(){
         tempSelectedHobbies = selectedOption
     }
 
+    const createUserRequest = (userDetail) => {
+        let userRequest = {}
+        userRequest = Object.assign(userRequest, userDetail)
+        delete userRequest.id
+        delete userRequest.date_joined
+        delete userRequest.agreement
+        return userRequest
+    }
     // var jsonparse = JSON.parse(jsonstring);
-    const Recommendation = jsonstring.map((data) => {
+    const RecommendationList = jsonstring.map((data) => {
                             return (
                                 <div style={{display : "inline"}}>
                                 <UserCard img = {cat1} name = {data.username} course = {data.courses[0]} hobby1 = {data.tags[0]} hobby2 = {data.tags[1]}/>
@@ -165,7 +180,7 @@ function GetRecommendation(){
             <div className="row m-0">
                 <div className="rec-section m-0">
                 {
-                    Recommendation
+                    RecommendationList
                     
                 }
                 </div>

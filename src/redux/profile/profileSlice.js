@@ -4,10 +4,10 @@ export const profileSlice = createSlice({
     name: 'userProfile',
     initialState: {
         email: '',
-        userName: '',
-        first_Name: '',
-        last_Name: '',
-        img_url: '',
+        username: '',
+        first_name: '',
+        last_name: '',
+        image_url: '',
         gender: '',
         faculty: '',
         program: '',
@@ -26,16 +26,16 @@ export const profileSlice = createSlice({
             state.email = action.payload
         },
         setUserName: (state, action) => {
-            state.userName = action.payload
+            state.username = action.payload
         },
         setFirstName: (state, action) => {
-            state.firstName = action.payload
+            state.first_name = action.payload
         },
         setLastName: (state, action) => {
-            state.lastName = action.payload
+            state.last_name = action.payload
         },
         setImgURL: (state, action) => {
-            state.imgURL = action.payload
+            state.image_url = action.payload
         },
         setGender: (state, action) => {
             state.gender = action.payload
@@ -56,7 +56,7 @@ export const profileSlice = createSlice({
             state.tags = action.payload
         },
         setProfileVisible: (state, action) => {
-            state.profileVisible = action.payload
+            state.profile_visible = action.payload
         },
         setAgreement: (state, action) => {
             state.agreement = action.payload
