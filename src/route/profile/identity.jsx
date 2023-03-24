@@ -80,10 +80,10 @@ const selectStyle = {
 function GetIdentity() {
     const dispatch = useDispatch(); //This is used to store a value into Redux store
     //Use `useState` to declare variables and setters to update variable
-    const fName = useSelector((state) => state.user.firstName); //retrieve value from Redux store and use as default
-    const lName = useSelector((state) => state.user.lastName);
+    const fName = useSelector((state) => state.user.first_name); //retrieve value from Redux store and use as default
+    const lName = useSelector((state) => state.user.last_name);
     const genderTag = useSelector((state) => state.user.gender);
-    const imgURL = useSelector((state) => state.user.imgURL);
+    const imgURL = useSelector((state) => state.user.img_url);
     const [nameError, setNameError] = useState("");
 
     const genders = [
