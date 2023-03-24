@@ -38,7 +38,7 @@ function GetIdentity() {
     const fName = useSelector((state) => state.user.first_name); //retrieve value from Redux store and use as default
     const lName = useSelector((state) => state.user.last_name);
     const genderTag = useSelector((state) => state.user.gender);
-    const imgURL = useSelector((state) => state.user.img_url);
+    const imgURL = useSelector((state) => state.user.image_url);
     const [nameError, setNameError] = useState("");
 
     const genders = [
