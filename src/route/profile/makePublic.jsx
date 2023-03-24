@@ -33,7 +33,7 @@ A submit button to submit data to create user Profile
 function GetMakePublic() {
     const dispatch = useDispatch();
     //Use `useState` to declare variables and setters to update variable
-    const toggle = useSelector((state) => state.user.profileVisible)
+    const toggle = useSelector((state) => state.user.profile_visible)
     const userAgreeValue = useSelector((state) => state.user.agreement);
     const [isHover,setHover] = useState(false);
     const [msg, setProfileMsg] = useState("");
