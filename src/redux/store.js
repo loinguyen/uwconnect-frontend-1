@@ -16,7 +16,7 @@ import {
 const persistConfig = {
   key: 'root',
   storage,
-  //whitelist: ['auth'] // persist only the auth slice of the state
+  whitelist: ['auth'] // persist only the auth slice of the state
 };
 
 const rootReducer = combineReducers({
