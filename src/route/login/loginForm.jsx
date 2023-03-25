@@ -7,7 +7,7 @@ import ErrorBoundary from '../../components/ErrorBoundary';
 import { Avatar } from "antd";
 import { setLoggedIn } from "../../redux/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail } from '../../redux/profile/profileSlice'
+import { setEmail } from '../../redux/auth/authSlice'
 
 
 function GetLoginForm() {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
-import { setEmail } from '../../redux/profile/profileSlice'
+import { setEmail } from '../../redux/auth/authSlice'
 import style from '../../styles/formStyle.module.css';
 import logo from '../../images/login_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
