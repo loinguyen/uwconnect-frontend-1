@@ -38,30 +38,6 @@ const Home = () => {
                 setRenderCometChat(false)
             })
         }
-        // if (email) {
-            
-        // }
-        // const appSetting = new CometChat.AppSettingsBuilder()
-        //     .subscribePresenceForAllUsers()
-        //     .setRegion(region)
-        //     .build();
-        // CometChat.init(appID, appSetting).then(
-        //     () => {
-        //         console.log("Initialization completed successfully");
-        //         CometChat.login(email.split("@")[0], authKey);
-        //     },
-        //     (error) => {
-        //         console.log("Initialization failed with error:", error);
-        //         // Check the reason for error and take appropriate action.
-        //     }
-        // ).then(
-        //     (user) => {
-        //         console.log("Login Successful:", { user });
-        //     },
-        //     (error) => {
-        //         console.log("Login failed with exception:", { error });
-        //     }
-        // )
 
         setUid(email.split("@")[0]);
     },[email])
@@ -80,6 +56,7 @@ const Home = () => {
             conversationIdMap.set(key, false)
         }
         setConversationIdMap(new Map(conversationIdMap.set(conversationWith.uid, true)))
+        setOpenConnection(false)
     }
 
     const openConnectionPage = () => {
@@ -109,7 +86,7 @@ const Home = () => {
                         
                     }
                     <div className="col-9 h-100" style={{display: openConnection ? 'block': 'none'}}>
-                         <GetRecommendation />
+                         <GetRecommendation onConnectionSelect={handleConversationSelect}/>
 +                   </div>
                     
                 </div>

@@ -15,7 +15,7 @@ import dog2 from '../images/dog2.jpeg';
 
 const { Title } = Typography;
 
-function GetRecommendation(){
+function GetRecommendation(props){
     const [coursesList, setCoursesList] = useState([])
     const [selectedCourses, setSelectedCourses] = useState([])
     const [hobbiesList, setHobbiesList] = useState([])
@@ -34,11 +34,11 @@ function GetRecommendation(){
     }, [selectedCourses, selectedHobbies])
 
     useEffect(() => {
-        if (userRequest.email || userRequest.email !== '') {
-            let tempUserRequest = createUserRequest(userRequest)
+        if (userDetail.email && userDetail.email !== '') {
+            let tempUserRequest = createUserRequest(userDetail)
             getRecommendationConnections(tempUserRequest);
         }
-    }, [userRequest])
+    }, [userDetail, userRequest])
 
     const getListClass = () => {
         fetch(process.env.REACT_APP_API_LINK + '/enrollment', { credentials: 'include' })
@@ -109,13 +109,19 @@ function GetRecommendation(){
         delete userRequest.agreement
         return userRequest
     }
+
+    const sendMessageToUser = (userEmail) => {
+        props.onConnectionSelect(userEmail.split("@")[0])
+    }
     
     const generateReconmmendation = (json) => {
     // var jsonparse = JSON.parse(jsonstring);
     const RecommendationList = json.map((data) => {
                             return (
                                 <div style={{display : "inline"}} key={data.username + "_div"}>
-                                    <UserCard img = {cat1} name = {data.username} course = {data.courses[0]} hobby1 = {data.tags[0]} hobby2 = {data.tags[1]}/>
+                                    <UserCard img = {cat1} name = {data.username} email ={data.email}
+                                            course = {data.courses[0]} hobby1 = {data.tags[0]} hobby2 = {data.tags[1]}
+                                            messageHandler={sendMessageToUser}/>
                                 </div>
                             )})
 
