@@ -23,15 +23,22 @@ function GetRecommendation(){
     const [openPreferencePopup, setOpenPreferencePopup] = useState(false);
     const [RecommendationList, updateRecommendationList] = useState();
     let userDetail = useSelector((state) => state.user)
+    const [userRequest, setUserRequest] = useState(userDetail)
 
     let tempSelectedCourses = [...selectedCourses];
     let tempSelectedHobbies = [...selectedHobbies];
     useEffect(() => {
         getListClass();
         getListHobby();
-        let userRequest = createUserRequest(userDetail);
-        getRecommendationConnections(userRequest);
-    }, [selectedCourses, selectedHobbies, userDetail])
+        
+    }, [selectedCourses, selectedHobbies])
+
+    useEffect(() => {
+        if (userRequest.email || userRequest.email !== '') {
+            let tempUserRequest = createUserRequest(userRequest)
+            getRecommendationConnections(tempUserRequest);
+        }
+    }, [userRequest])
 
     const getListClass = () => {
         fetch(process.env.REACT_APP_API_LINK + '/enrollment', { credentials: 'include' })
@@ -78,8 +85,7 @@ function GetRecommendation(){
         userRequest.courses = tempSelectedCourses.map((item) => item.value)
         userRequest.tags = tempSelectedHobbies.map((item) => item.value)
        
-        getRecommendationConnections(userRequest)
-       
+        setUserRequest(userRequest)
         setOpenPreferencePopup(false);
     };
     const closePreferenceEdit = () => {
@@ -108,8 +114,8 @@ function GetRecommendation(){
     // var jsonparse = JSON.parse(jsonstring);
     const RecommendationList = json.map((data) => {
                             return (
-                                <div style={{display : "inline"}}>
-                                <UserCard img = {cat1} name = {data.username} course = {data.courses[0]} hobby1 = {data.tags[0]} hobby2 = {data.tags[1]}/>
+                                <div style={{display : "inline"}} key={data.username + "_div"}>
+                                    <UserCard img = {cat1} name = {data.username} course = {data.courses[0]} hobby1 = {data.tags[0]} hobby2 = {data.tags[1]}/>
                                 </div>
                             )})
 
@@ -164,7 +170,7 @@ function GetRecommendation(){
             <div className="row m-0">
                 <div style={{paddingLeft: '3%', fontSize: 'large'}}>
                     {[...selectedCourses,...selectedHobbies].map((item) => (
-                        <Badge className="me-1" bg="warning" text = "dark">{item.label}</Badge>
+                        <Badge key={item.value + "_badge"} className="me-1" bg="warning" text = "dark">{item.label}</Badge>
                     ))}
                     <Tooltip title="Edit preference">
                         <Button className="round-btn" onClick={openPreferenceEdit} type="primary" shape="circle" icon={<EditOutlined />} />
