@@ -9,45 +9,37 @@ import styles from'../../styles/home.css'
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../../redux/profile/profileSlice";
 
+const authKey = process.env.REACT_APP_COMETCHAT_AUTH_KEY;
+
 const Home = () => {
     const dispatch = useDispatch();
     const [uid, setUid] = useState(null);
     const [userData, setUserData] = useState(null);
     const [conversationIdMap, setConversationIdMap] = useState(new Map());
     const [openConnection, setOpenConnection] = useState(false);
-    const email = useSelector((state) => state.user.email);
+    const [renderCometChat, setRenderCometChat] = useState(false);
+    const email = useSelector((state) => state.auth.email);
     
-    let appID = process.env.REACT_APP_COMETCHAT_APPID;
-    const region = "us";
-    let authKey = process.env.REACT_APP_COMETCHAT_AUTH_KEY;
+    // let appID = process.env.REACT_APP_COMETCHAT_APPID;
+    // const region = "us";
+    // let authKey = process.env.REACT_APP_COMETCHAT_AUTH_KEY;
 
     useEffect(() => {
-        getUserDetail();
-        console.log("trying to init cometchat", email.split("@")[0])
-
-            const appSetting = new CometChat.AppSettingsBuilder()
-                .subscribePresenceForAllUsers()
-                .setRegion(region)
-                .build();
-            CometChat.init(appID, appSetting).then(
-                () => {
-                    console.log("Initialization completed successfully");
-                    CometChat.login(email.split("@")[0], authKey);
-                },
-                (error) => {
-                    console.log("Initialization failed with error:", error);
-                    // Check the reason for error and take appropriate action.
+        if (email) {
+            getUserDetail();
+            console.log("trying to init cometchat", email.split("@")[0])
+            CometChat.login(email.split("@")[0], authKey).then((user) => {
+                if(user) {
+                    console.log('CometChat Login successful')
+                    setRenderCometChat(true)
                 }
-            ).then(
-                (user) => {
-                    console.log("Login Successful:", { user });
-                },
-                (error) => {
-                    console.log("Login failed with exception:", { error });
-                }
-            )
+            }).catch(error => {
+                console.log('CometChatLogin Failed', error);
+                setRenderCometChat(false)
+            })
+        }
 
-            setUid(email.split("@")[0]);
+        setUid(email.split("@")[0]);
     },[email])
 
     const getUserDetail = () => {
@@ -64,6 +56,7 @@ const Home = () => {
             conversationIdMap.set(key, false)
         }
         setConversationIdMap(new Map(conversationIdMap.set(conversationWith.uid, true)))
+        setOpenConnection(false)
     }
 
     const openConnectionPage = () => {
@@ -72,7 +65,7 @@ const Home = () => {
 
     return (
         <div className="position-fixed" style={{inset: '0', top: '5vh'}}>
-            {uid && 
+            {renderCometChat && 
                 <div className="col-12 d-flex" style={{height: '95vh'}}>
                     <div className="col-3 h-100 align-self-end" style={{backgroundColor: 'rgba(255,255,255,0.1)'}}>
                         <div className="m-auto d-flex align-item-center pb-1" style={{height: '80px'}}>
@@ -84,7 +77,7 @@ const Home = () => {
                         {/* <CometChatConversationList onItemClick={handleConversationSelect}/> */}
                         <CometChatUserList friendsOnly={true} onItemClick={handleConversationSelect}/>
                     </div>
-                    { !openConnection &&
+                    { !openConnection && renderCometChat &&
                         [...conversationIdMap.keys()].map(k => (
                             conversationIdMap.get(k) && <div className="col-9 h-100">
                                 <CometChatMessages chatWithUser={k}/>
@@ -93,7 +86,7 @@ const Home = () => {
                         
                     }
                     <div className="col-9 h-100" style={{display: openConnection ? 'block': 'none'}}>
-                         <GetRecommendation />
+                         <GetRecommendation onConnectionSelect={handleConversationSelect}/>
 +                   </div>
                     
                 </div>
