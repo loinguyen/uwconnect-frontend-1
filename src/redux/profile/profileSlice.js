@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit'
 export const profileSlice = createSlice({
     name: 'userProfile',
     initialState: {
-        email: '',
         username: '',
         first_name: '',
         last_name: '',
@@ -21,9 +20,6 @@ export const profileSlice = createSlice({
     reducers: {
         setUser: (state, action) => {
             Object.assign(state, action.payload)
-        },
-        setEmail: (state, action) => {
-            state.email = action.payload
         },
         setUserName: (state, action) => {
             state.username = action.payload
@@ -67,6 +63,6 @@ export const profileSlice = createSlice({
     },
 })
 
-export const { setUser, setCourses, setEmail, setUserName, setFaculty, setGender, setID, setImgURL, setProfileVisible, setProgram, setTags, setFirstName, setLastName, setAgreement, setYear } = profileSlice.actions
+export const { setUser, setCourses, setUserName, setFaculty, setGender, setID, setImgURL, setProfileVisible, setProgram, setTags, setFirstName, setLastName, setAgreement, setYear } = profileSlice.actions
 
 export default profileSlice.reducer

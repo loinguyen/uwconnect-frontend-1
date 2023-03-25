@@ -31,7 +31,7 @@ import { setLoggedIn } from "../../redux/auth/authSlice";
 function Profile(){
     //retrieve profile info from Redux
     const dispatch = useDispatch();
-    const email = useSelector((state) => state.user.email);
+    const email = useSelector((state) => state.auth.email);
     const userName = useSelector((state) => state.user.username);
     const firstName = useSelector((state) => state.user.first_name);
     const lastName = useSelector((state) => state.user.last_name);
