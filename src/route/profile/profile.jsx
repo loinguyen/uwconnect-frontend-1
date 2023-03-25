@@ -153,7 +153,7 @@ function Profile(){
             
             </div>
             {/* </div> */}
-            
+            <div style={{display: "flex", justifyContent: "center"}}>
             {!isFirstStep && <button 
                     className={style.profileButtonBack}
                     type = "button"
@@ -171,6 +171,7 @@ function Profile(){
                     onMouseOut={MouseOut2}
                     onClick={handleSubmit}
             >{isLastStep ? "Submit" : "Next"}</button>
+            </div>
             
         </form>
     

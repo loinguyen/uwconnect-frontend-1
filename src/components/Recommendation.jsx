@@ -15,26 +15,13 @@ import dog2 from '../images/dog2.jpeg';
 
 const { Title } = Typography;
 
-var jsonstring = 
-[{ "email": "user@example.com", "username": "Johnny Depp 1", "gender": "string","faculty": "string","program": "string","year": 0,"courses": ["ECE-650"],"tags": ["teaefae","vhsroshsh1"],"bio": "string","id": "string"},
-{ "email": "user@example.com", "username": "Johnny Depp 2", "gender": "string","faculty": "string","program": "string","year": 0,"courses": ["ECE-651"],"tags": ["tesrgs","videsbss"],"bio": "string","id": "string"},
-{ "email": "user@example.com", "username": "Johnny Depp 3", "gender": "string","faculty": "string","program": "string","year": 0,"courses": ["ECE-652"],"tags": ["taeeas","viasfbe"],"bio": "string","id": "string"},
-{ "email": "user@example.com", "username": "Johnny Depp 4", "gender": "string","faculty": "string","program": "string","year": 0,"courses": ["ECE-653"],"tags": ["taets","vidsfbeae"],"bio": "string","id": "string"},
-{ "email": "user@example.com", "username": "Johnny Depp 5", "gender": "string","faculty": "string","program": "string","year": 0,"courses": ["ECE-654"],"tags": ["taettnis","vsbsdme"],"bio": "string","id": "string"},
-{ "email": "user@example.com", "username": "Johnny Depp 6", "gender": "string","faculty": "string","program": "string","year": 0,"courses": ["ECE-655"],"tags": ["tesets","vixbsdge"],"bio": "string","id": "string"},
-{ "email": "user@example.com", "username": "Johnny Depp 7", "gender": "string","faculty": "string","program": "string","year": 0,"courses": ["ECE-656"],"tags": ["tsdgcvs","vhjsgrame"],"bio": "string","id": "string"},
-{ "email": "user@example.com", "username": "Johnny Depp 8", "gender": "string","faculty": "string","program": "string","year": 0,"courses": ["ECE-657"],"tags": ["tsgis","vixfhe"],"bio": "string","id": "string"},
-{ "email": "user@example.com", "username": "Johnny Depp 9", "gender": "string","faculty": "string","program": "string","year": 0,"courses": ["ECE-658"],"tags": ["txggis","vidxfbxe"],"bio": "string","id": "string"},
-{ "email": "user@example.com", "username": "Johnny Depp 10", "gender": "string","faculty": "string","program": "string","year": 0,"courses": ["ECE-659"],"tags": ["texfbbgis","vixfg"],"bio": "string","id": "string"}                
-
-];
-
 function GetRecommendation(){
     const [coursesList, setCoursesList] = useState([])
     const [selectedCourses, setSelectedCourses] = useState([])
     const [hobbiesList, setHobbiesList] = useState([])
     const [selectedHobbies, setSelectedHobbies] = useState([])
     const [openPreferencePopup, setOpenPreferencePopup] = useState(false);
+    const [RecommendationList, updateRecommendationList] = useState();
     let userDetail = useSelector((state) => state.user)
 
     let tempSelectedCourses = [...selectedCourses];
@@ -77,7 +64,8 @@ function GetRecommendation(){
         .then(response => {
             return response.json()
         })
-        .then(json => console.log(json));
+        .then(json => generateReconmmendation(json))
+          // onconsole.log(json));
     }
 
     const openPreferenceEdit = () => {
@@ -89,9 +77,9 @@ function GetRecommendation(){
         let userRequest = createUserRequest(userDetail)
         userRequest.courses = tempSelectedCourses.map((item) => item.value)
         userRequest.tags = tempSelectedHobbies.map((item) => item.value)
-        if (!jsonstring) {
-            getRecommendationConnections(userRequest)
-        }
+       
+        getRecommendationConnections(userRequest)
+       
         setOpenPreferencePopup(false);
     };
     const closePreferenceEdit = () => {
@@ -115,13 +103,20 @@ function GetRecommendation(){
         delete userRequest.agreement
         return userRequest
     }
+    
+    const generateReconmmendation = (json) => {
     // var jsonparse = JSON.parse(jsonstring);
-    const RecommendationList = jsonstring.map((data) => {
+    const RecommendationList = json.map((data) => {
                             return (
                                 <div style={{display : "inline"}}>
                                 <UserCard img = {cat1} name = {data.username} course = {data.courses[0]} hobby1 = {data.tags[0]} hobby2 = {data.tags[1]}/>
                                 </div>
                             )})
+
+        updateRecommendationList(RecommendationList)
+                  
+    }
+        
 
     return (
         <div style={{width:"100%" , height: "100%", overflow: "auto" }} id="rec-container">
