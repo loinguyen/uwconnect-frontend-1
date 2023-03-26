@@ -109,7 +109,7 @@ function GetRecommendation(){
     const RecommendationList = json.map((data) => {
                             return (
                                 <div style={{display : "inline"}}>
-                                <UserCard img = {cat1} name = {data.username} course = {data.courses[0]} hobby1 = {data.tags[0]} hobby2 = {data.tags[1]}/>
+                                <UserCard img = {data.image_url} name = {data.username} course = {data.courses[0]} hobby1 = {data.tags[0]} hobby2 = {data.tags[1]}/>
                                 </div>
                             )})
 
