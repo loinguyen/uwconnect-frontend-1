@@ -48,29 +48,35 @@ const handleMenuClick = ({ key }, email ) => {
 
 function Header() {
     const email = useSelector((state) => state.user.email)
+    const avatar = useSelector((state) => state.user.image_url)
+    const displayName = useSelector((state) => state.user.first_name + ' ' + state.user.last_name)
 
     return (
         <div className='row' style={{height: '5vh', backgroundColor: 'rgba(0,0,0,0.9)', color: '#FFFFFF'}}>
             <div className='col-12 d-flex flex-row'>
-                <div className='col-4 d-flex' style={{maxHeight: '50px'}}>
+                <div className='col-4 d-flex' style={{maxHeight: '50px', flex: '1'}}>
                     <Avatar className='my-auto' size={30} src={<img src={logo} alt="" />} />
                     <span className='fs-5 fw-bold my-auto'>UW Connect</span>
-                    <span className='fs-5 fw-bold my-auto' style={{ float: 'right' }}>
+                </div>
+                {avatar && <div className='col-4 d-flex pe-2' style={{alignSelf: 'center', justifyContent: 'flex-end'}}>
+                    <span className='fs-5 fw-bold my-auto'>
                         <Dropdown
                             menu={{
                                 items,
                                 onClick: (e) => handleMenuClick(e, email)
                             }}
                             >
-                            <a onClick={(e) => e.preventDefault()}>
+                            <a onClick={(e) => e.preventDefault()} style={{textDecoration:'none'}}>
                             <Space>
-                                Options
-                                <SettingOutlined />
+                                <Avatar className='my-auto mr-2' shape="square" size={30} src={<img src={avatar} alt="" />} />
+                                <span style={{color: 'rgba(255,255,255,1)', fontSize: 'medium', fontWeight: 500}}>
+                                    {displayName}
+                                </span>
                             </Space>
                             </a>
                         </Dropdown>
                     </span>
-                </div>
+                </div>}
             </div>
         </div>
     )
