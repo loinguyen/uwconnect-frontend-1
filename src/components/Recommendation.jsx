@@ -118,10 +118,12 @@ function GetRecommendation(props){
     // var jsonparse = JSON.parse(jsonstring);
     const RecommendationList = json.map((data) => {
                             return (
+
                                 <div style={{display : "inline"}} key={data.username + "_div"}>
-                                    <UserCard img = {cat1} name = {data.username} email ={data.email}
+                                    <UserCard img = {data.image_url} name = {data.username} email ={data.email}
                                             course = {data.courses[0]} hobby1 = {data.tags[0]} hobby2 = {data.tags[1]}
                                             messageHandler={sendMessageToUser}/>
+
                                 </div>
                             )})
 
