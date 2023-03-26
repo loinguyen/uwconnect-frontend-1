@@ -34,8 +34,12 @@ function GetRecommendation(props){
     }, [selectedCourses, selectedHobbies])
 
     useEffect(() => {
-        if (userDetail.email && userDetail.email !== '') {
-            let tempUserRequest = createUserRequest(userDetail)
+        let tmpUserDetail = userRequest;
+        if (!userRequest.email || userRequest.email === '') {
+            tmpUserDetail = userDetail;
+        }
+        if (tmpUserDetail.email && tmpUserDetail.email !== '') {
+            let tempUserRequest = createUserRequest(tmpUserDetail)
             getRecommendationConnections(tempUserRequest);
         }
     }, [userDetail, userRequest])
