@@ -5,9 +5,8 @@ import { Link, Router, useNavigate } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import { Avatar } from "antd";
-import { setLoggedIn } from "../../redux/auth/authSlice";
+import { setLoggedIn, setEmail } from "../../redux/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail } from '../../redux/profile/profileSlice'
 
 
 function GetLoginForm() {
@@ -63,6 +62,7 @@ function GetLoginForm() {
 
     function login(){
         dispatch(setLoggedIn(true));
+        dispatch(setEmail(email));
     }
 
     function CheckLoginStatus() {
