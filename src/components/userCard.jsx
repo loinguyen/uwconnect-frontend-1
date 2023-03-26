@@ -18,7 +18,7 @@ function UserCard(props){
         <div>
         {visibility && (
         <div className="cardContainer">
-            <div className="cardImg"><img  src = {props.img} style={{height : "100%" , borderRadius: "50%"}} ></img></div>
+            <div className="cardImg"><img  src = {props.img} style={{height : "100%" , borderRadius: "50%", width: "100%"}} ></img></div>
             <div className = "cardName"><p style={{fontSize: 24}} >{props.name}</p></div>
             <div className="cardButton1"><button className="accept card-button"  onClick={sendMessage}><MessageTwoTone twoToneColor={"#20f50c"} /></button></div>
             <div className="cardButton2"><button className="decline card-button" onClick={removeSelf} ><CloseCircleTwoTone twoToneColor={"red"} /></button></div>
