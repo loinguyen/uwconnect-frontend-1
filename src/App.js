@@ -31,14 +31,15 @@ function App() {
   
   useEffect(() => {
     // This function will run before any route rendered
-    if (location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register' && location.pathname !== '/profile') {
-      if (!isLoggedIn){
-        window.location.href = '/';
-      }
-    } else{
+    if (location.pathname === '/' && location.pathname === '/login' && location.pathname === '/register' && location.pathname === '/createprofile') {
       if (isLoggedIn){
         window.location.href = '/home';
       }
+    } else{
+      if (!isLoggedIn){
+        window.location.href = '/';
+      }
+
     }
   }, [location]);
 
