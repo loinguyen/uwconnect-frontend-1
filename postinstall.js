@@ -12,7 +12,7 @@ const zipName = zipFileName + ".zip";
 const source = __dirname + "/" + zipFileName;
 const destination = filePath;
 
-const downloadUrl = "https://github.com/cometchat-pro/cometchat-pro-react-ui-kit/archive/master.zip";
+const downloadUrl = "https://github.com/Mersen130/cometchat-pro-react-ui-kit/archive/master.zip";
 
 
 const download = (uri, filename, callback) => {
