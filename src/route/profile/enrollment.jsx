@@ -7,6 +7,7 @@ import {useLocation} from 'react-router-dom';
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import { Border } from "react-bootstrap-icons";
+import MultiSelectLargeList from "../../components/MultiSelectLargeList";
 
 const selectStyle = {
     control: (base, state) => ({
@@ -113,7 +114,7 @@ function Enrollment({program,admission_year,faculty,course}){
     }
 
     return (
-       <div >
+       <div className="multiSelect">
             {/* <p >What are you enrolling in this term?</p> */}
             <br></br>
             {/* <label>Faculty</label> */}
@@ -121,7 +122,7 @@ function Enrollment({program,admission_year,faculty,course}){
                 defaultValue={facultyArray.filter(function(list) {
                     return list.value === facultyVal;
                 })}
-                placeholder = "Faculty" 
+                placeholder="Faculty" 
                 styles={selectStyle}  
                 options={facultyArray} 
                 onChange={handleFacultyChange}
@@ -132,7 +133,7 @@ function Enrollment({program,admission_year,faculty,course}){
                 defaultValue={yearArray.filter(function(list) {
                     return list.value === yearVal;
                 })}
-                placeholder = "Admission Year" 
+                placeholder="Admission Year" 
                 styles={selectStyle}  
                 options={yearArray}  
                 onChange={handleYearChange}
@@ -142,20 +143,18 @@ function Enrollment({program,admission_year,faculty,course}){
                 defaultValue={programArray.filter(function(list) {
                     return list.value === programVal;
                 })}
-                placeholder = "Program" 
+                placeholder="Program" 
                 styles={selectStyle}  
                 options={programArray} 
                 onChange={handleProgramChange} 
             />
             <label>{/*Courses*/}</label>
-            <Select
+            <MultiSelectLargeList
+                class="multiSelect"
+                placeholder="Courses"
                 defaultValue={courseArray.filter(obj => courseVal.includes(obj.value))}
-                isMulti
-                placeholder="Courses" 
-                styles={selectStyle} 
-                className="Select-box" 
-                options={courseArray} 
-                onChange={handleCourseChange}
+                options={courseArray}
+                onUpdate={handleCourseChange}
             />
        </div>
        

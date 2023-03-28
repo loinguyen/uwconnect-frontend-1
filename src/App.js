@@ -13,7 +13,8 @@ import GetIdentity from './route/profile/identity';
 import GetMakePublic from './route/profile/makePublic';
 import Layout from './components/Layout'
 import Home from './route/home/Home';
-import Profile from "./route/profile/profile";
+import CreateProfile from "./route/profile/createProfile";
+import ModifyProfile from "./route/profile/modifyProfile";
 
 import {
   Routes,
@@ -28,18 +29,18 @@ function App() {
   const location = useLocation();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn )
   
-  // useEffect(() => {
-  //   // This function will run before any route rendered, FIX THIS PART, LOGIC ERROR!!!
-  //   if (location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register') {
-  //     if (!isLoggedIn){
-  //       window.location.href = '/';
-  //     }
-  //   } else{
-  //     if (isLoggedIn){
-  //       window.location.href = '/home';
-  //     }
-  //   }
-  // }, [location]);
+  useEffect(() => {
+    // This function will run before any route rendered
+    if (location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/register' && location.pathname !== '/profile') {
+      if (!isLoggedIn){
+        window.location.href = '/';
+      }
+    } else{
+      if (isLoggedIn){
+        window.location.href = '/home';
+      }
+    }
+  }, [location]);
 
 
   return (
@@ -48,7 +49,8 @@ function App() {
       <Route exact path='/login' element={<div  className='App-header'><GetLoginForm /></div>}/>
       <Route exact path='/register' element={<div  className='App-header'><GetSignupForm /></div>}/>
       <Route element={<Layout/>}>
-        <Route exact path='/profile' element={<div className='App-header'><Profile /></div>}/>
+        <Route exact path='/createprofile' element={<div className='App-header'><CreateProfile /></div>}/>
+        <Route exact path='/modifyprofile' element={<div className='App-header'><ModifyProfile /></div>}/>
         <Route exact path='/home' element={<div  className='App-header'><Home /></div>}/>
       </Route>
       {/* <Route exact path='/profile/identity' element={<div className='App-header'><GetIdentity /></div>}/>

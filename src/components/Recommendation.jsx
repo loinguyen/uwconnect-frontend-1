@@ -123,9 +123,9 @@ function GetRecommendation(props){
     const RecommendationList = json.map((data) => {
                             return (
 
-                                <div style={{display : "inline"}} key={data.username + "_div"}>
-                                    <UserCard img = {data.image_url} name = {data.username} email ={data.email}
-                                            course = {data.courses[0]} hobby1 = {data.tags[0]} hobby2 = {data.tags[1]}
+                                <div style={{display:"inline"}} key={data.username+"_div"}>
+                                    <UserCard img={data.image_url} name={data.username} email={data.email}
+                                            course={data.courses[0]} hobby1={data.tags[0]} hobby2={data.tags[1]}
                                             messageHandler={sendMessageToUser}/>
 
                                 </div>
@@ -137,7 +137,7 @@ function GetRecommendation(props){
         
 
     return (
-        <div style={{width:"100%" , height: "100%", overflow: "auto" }} id="rec-container">
+        <div style={{width:"100%", height:"100%", overflow:"auto"}} id="rec-container">
             <Drawer
                 title="Edit Preference"
                 placement="top"
@@ -147,7 +147,7 @@ function GetRecommendation(props){
                 onClose={closePreferenceEdit}
                 destroyOnClose={true}
                 rootClassName="col-9"
-                rootStyle={{left: '25%'}}
+                rootStyle={{left:'25%'}}
             >
                 <div className="row col-12 m-0 flex-column" style={{minHeight: '85%'}}>
                     <div>

@@ -46,7 +46,6 @@ function GetSignupForm(){
         setClickStatus(true);
         
         if (emailCheckError === "" && passError === "" && confirmError === "") {
-            dispatch(setEmail(email)); // save email to Redux
             fetch(process.env.REACT_APP_API_LINK + '/user/register', {
             //fetch('http://127.0.0.1:5000/user/register', {
                 method: 'POST',
@@ -59,7 +58,12 @@ function GetSignupForm(){
                     password: pass,
                     })
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (response.status === 200){
+                        dispatch(setEmail(email)); // save email to Redux
+                    }
+                    return response.json()
+                })
                 .then(json => setRegisterMessage(json.message));
             //setRegisterMessage(JSON.stringify({email: Email, password: Pass}));
         }
@@ -67,7 +71,7 @@ function GetSignupForm(){
 
     function CheckRegisterStatus() {
         if (RegisterStatus === true) {
-            window.location.href = '/profile';
+            window.location.href = '/createprofile';
         } 
     }
     

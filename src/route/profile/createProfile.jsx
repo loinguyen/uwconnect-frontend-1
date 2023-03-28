@@ -28,7 +28,7 @@ import { setLoggedIn } from "../../redux/auth/authSlice";
 
 // }
 
-function Profile(){
+function CreateProfile(){
     //retrieve profile info from Redux
     const dispatch = useDispatch();
     const email = useSelector((state) => state.auth.email);
@@ -47,7 +47,7 @@ function Profile(){
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
     const id = '';
 
-    const { steps, currentStepIndex, step,isFirstStep,isLastStep,back,next } = useMultistepForm([<GetIdentity/>,<Enrollment/>,<GetProfileHobbies/>,<GetMakePublic/>]);
+    const { steps, currentStepIndex, step,isFirstStep,isLastStep,back,next } = useMultistepForm([<GetIdentity/>,<Enrollment/>,<GetProfileHobbies/>,<GetMakePublic new={true}/>]);
     const [isHover,setHover] = useState(false);
     const [isHover2,setHover2] = useState(false);
     const [submitError, setSubmitError] = useState("");
@@ -115,7 +115,7 @@ function Profile(){
                 .then(json => setProfileMessage(json.message));
             }
             else {
-                setSubmitError("Please fill up profile page and agree to user agreement")
+                setSubmitError("Please fill up first page and agree to user agreement")
             }
         }
         else {
@@ -150,7 +150,6 @@ function Profile(){
             <div className={style.profileContainer}> 
             <p className={style.errorMsg}>{submitError}</p>
             {step}
-            
             </div>
             {/* </div> */}
             <div style={{display: "flex", justifyContent: "center"}}>
@@ -182,4 +181,4 @@ function Profile(){
     );
 }
 
-export default Profile;
+export default CreateProfile;

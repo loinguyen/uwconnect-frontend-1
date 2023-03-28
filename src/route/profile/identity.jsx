@@ -156,8 +156,8 @@ function GetIdentity() {
                 options={profilePics}
                 onChange={handleProfilePicChange}
             />
-            <input className={style.profileInput} type="text" defaultValue={fName} placeholder="First Name" onChange={UpdateFirstName}/>
-            <input className={style.profileInput} type="text" defaultValue={lName} placeholder="Last Name" onChange={UpdateLastName}/>
+            <input className="form-control" type="text" defaultValue={fName} placeholder="First Name" onChange={UpdateFirstName}/>
+            <input className="form-control" type="text" defaultValue={lName} placeholder="Last Name" onChange={UpdateLastName}/>
             <p className={style.errorMsg}>{nameError}</p>
             {/* <Select
                 className={style.selectionBox} 
