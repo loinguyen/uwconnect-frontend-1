@@ -127,6 +127,9 @@ function Profile(){
 
     React.useEffect(() => {
         //fill out actions based on the response from the backend
+        if (msg === "success") {
+            window.location.href = "/home";
+        }
     }, [msg]);
     
     return (
