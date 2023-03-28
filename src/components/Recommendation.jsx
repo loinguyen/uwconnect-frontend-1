@@ -115,7 +115,7 @@ function GetRecommendation(props){
     }
 
     const sendMessageToUser = (userEmail) => {
-        props.onConnectionSelect(userEmail.split("@")[0])
+        props.onConnectionSelect({uid: userEmail.split("@")[0]})
     }
     
     const generateReconmmendation = (json) => {
