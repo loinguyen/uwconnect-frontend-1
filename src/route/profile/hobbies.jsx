@@ -69,7 +69,6 @@ function GetProfileHobbies() {
                         />
                     ))
                 }
-                
                 </div>
             </div>
         </div>

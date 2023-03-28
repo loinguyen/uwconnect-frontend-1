@@ -23,7 +23,10 @@ const items = [
 
 const handleMenuClick = ({ key }, email ) => {
     message.info(`Click on item ${key}`);
-    if (key === "2"){
+    if (key === "1") {
+        window.location.href = '/modifyprofile';
+    }
+    if (key === "2") {
         // clear all redux states
         fetch(process.env.REACT_APP_API_LINK + '/user/logout', {
             // fetch('http://localhost:5000/user/validate', {

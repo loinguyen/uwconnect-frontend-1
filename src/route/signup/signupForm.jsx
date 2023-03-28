@@ -71,7 +71,7 @@ function GetSignupForm(){
 
     function CheckRegisterStatus() {
         if (RegisterStatus === true) {
-            window.location.href = '/profile';
+            window.location.href = '/createprofile';
         } 
     }
     
