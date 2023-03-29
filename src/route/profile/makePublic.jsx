@@ -30,7 +30,7 @@ A check box as user accept the user agreement.
 A submit button to submit data to create user Profile
 */
 
-function GetMakePublic() {
+function GetMakePublic(props) {
     const dispatch = useDispatch();
     //Use `useState` to declare variables and setters to update variable
     const toggle = useSelector((state) => state.user.profile_visible)
@@ -83,23 +83,17 @@ function GetMakePublic() {
                 height={20}
                 width={48}
             />
+            {props.new &&
             <div>
-                <input
-                    style={{ display:"inline", width:20,height: 20, color: "orange"}}
-                    type="checkbox"
-                    checked={userAgreeValue}
-                    onChange={handleUserAgreeValue}
-                />
-                <label style = {{display:"inline", fontSize:18}}>I have read and agree to the <a style={{ color:"orange", fontSize:18 }}>terms of service</a></label>
+            <input
+                style={{ display:"inline", width:20,height: 20, color: "orange"}}
+                type="checkbox"
+                checked={userAgreeValue}
+                onChange={handleUserAgreeValue}
+            />
+            <label style = {{display:"inline", fontSize:18}}>I have read and agree to the <a style={{ color:"orange", fontSize:18 }}>terms of service</a></label>
             </div>
-            {/* <button 
-                    onClick={ButtonClick}
-                    onMouseOver={MouseOver} 
-                    onMouseOut={MouseOut}
-                    onMouseUp={CheckProfileStatus}
-                    style={{ backgroundColor : isHover ? "orange" : "black" }}
-                >Submit
-            </button> */}
+            }
         </div>
     );
 }

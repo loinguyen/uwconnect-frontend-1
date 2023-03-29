@@ -51,8 +51,11 @@ function GetLoginForm() {
                 })
             })
             .then(response => {
-                if (response.status === 200){
+                if (response.status === 200) {
                     login();
+                } else if (response.status === 403) {
+                    login();
+                    window.location.href = '/createprofile';
                 }
                 return response.json()
             })
@@ -106,7 +109,6 @@ function GetLoginForm() {
     React.useEffect(() => {
         if (msg == "success") {
             loginStatus = true;
-            dispatch(setEmail(email));
         }
 
         if (msg == "fail") {
