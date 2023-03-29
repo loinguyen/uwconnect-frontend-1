@@ -54,7 +54,6 @@ function GetLoginForm() {
                 if (response.status === 200) {
                     login();
                 } else if (response.status === 403) {
-                    login();
                     window.location.href = '/createprofile';
                 }
                 return response.json()
