@@ -13,7 +13,6 @@ const selectStyle = {
     control: (base, state) => ({
       ...base,
       background: "#282c34",
-      
       // match with the menu
       borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
       // Overwrittes the different states of border
@@ -23,21 +22,24 @@ const selectStyle = {
       "&:hover": {
         // Overwrittes the different states of border
         borderColor: state.isFocused ? "white" : "white"
-      }
+      },
     }),
-    menu: base => ({
-      ...base,
-      // override border radius to match the box
-      color: 'white',
-      borderRadius: 0,
-      // kill the gap
-      marginTop: 0
+    input: (baseStyles) => ({
+        ...baseStyles,
+        color: 'white',
     }),
-    
-    menuList :(baseStyles) =>
-     ({...baseStyles,
-      maxHeight: '180px',
-      color: 'black'}),
+    menu: (baseStyles) => ({
+        ...baseStyles,
+        // override border radius to match the box
+        color: 'white',
+        borderRadius: 0,
+        // kill the gap
+        marginTop: 0
+    }),
+    menuList: (baseStyles) => ({
+        ...baseStyles,
+        maxHeight: '180px',
+        color: 'black'}),
     singleValue: (base, state) => ({
         ...base,
         color: state.isFocused ? 'orange' : 'white'}),
