@@ -4,7 +4,7 @@ import Select from 'react-select';
 import '../styles/multiSelectLargeList.css'
 import { useState } from "react";
 
-const height = 35;
+let height = 45;
 
 class MenuList extends Component {
     render() {
@@ -28,10 +28,11 @@ class MenuList extends Component {
 }
 
 const MultiSelectLargeList = (props) => {
-    const [placeholder] = useState(props.placeholder)
-    const [defaultValue] = useState(props.defaultValue)
-    const [options] = useState(props.options)
-    const [maxHeight] = useState(props.maxHeight)
+    const placeholder = props.placeholder
+    const defaultValue = props.defaultValue
+    const options = props.options
+    const styles = props.styles
+    height = props.itemHeight ? props.itemHeight : 55
     return (
         <>
             <Select
@@ -44,13 +45,7 @@ const MultiSelectLargeList = (props) => {
                 className="basic-multi-select"
                 classNamePrefix="select"
                 onChange={props.onUpdate}
-                styles={{
-                    menuList: (baseStyles) => ({
-                        ...baseStyles,
-                        maxHeight: maxHeight,
-                        color: 'rgb(0,0,0)'
-                        }),
-                }}
+                styles={styles}
             />
         </>
     );
