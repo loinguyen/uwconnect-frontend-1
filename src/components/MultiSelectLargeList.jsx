@@ -31,7 +31,7 @@ const MultiSelectLargeList = (props) => {
     const [placeholder] = useState(props.placeholder)
     const [defaultValue] = useState(props.defaultValue)
     const [options] = useState(props.options)
-    const [maxHeight] = useState(props.maxHeight)
+    const [styles] = useState(props.styles)
     return (
         <>
             <Select
@@ -44,13 +44,7 @@ const MultiSelectLargeList = (props) => {
                 className="basic-multi-select"
                 classNamePrefix="select"
                 onChange={props.onUpdate}
-                styles={{
-                    menuList: (baseStyles) => ({
-                        ...baseStyles,
-                        maxHeight: maxHeight,
-                        color: 'rgb(0,0,0)'
-                        }),
-                }}
+                styles={styles}
             />
         </>
     );

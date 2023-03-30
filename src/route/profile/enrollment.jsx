@@ -152,9 +152,11 @@ function Enrollment({program,admission_year,faculty,course}){
             <MultiSelectLargeList
                 class="multiSelect"
                 placeholder="Courses"
+                styles={selectStyle}
                 defaultValue={courseArray.filter(obj => courseVal.includes(obj.value))}
                 options={courseArray}
                 onUpdate={handleCourseChange}
+                maxHeight='180px'
             />
        </div>
        

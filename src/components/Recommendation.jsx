@@ -134,6 +134,16 @@ function GetRecommendation(props){
         updateRecommendationList(RecommendationList)
                   
     }
+
+    const customeMultiSelectStyle = (maxHeight) =>{
+        return {
+            menuList: (baseStyles) => ({
+                ...baseStyles,
+                maxHeight: maxHeight,
+                color: 'rgb(0,0,0)'
+                })
+        }
+    } 
         
 
     return (
@@ -155,9 +165,9 @@ function GetRecommendation(props){
                         <MultiSelectLargeList
                             placeholder="Type to search"
                             defaultValue={selectedCourses}
+                            styles={() => customeMultiSelectStyle('180px')}
                             options={coursesList}
                             onUpdate={onCoursesFilterSelected}
-                            maxHeight='180px'
                         />
                     </div>
                     <div>
@@ -166,6 +176,7 @@ function GetRecommendation(props){
                             placeholder="Type to search"
                             defaultValue={selectedHobbies}
                             options={hobbiesList}
+                            styles={() => customeMultiSelectStyle('140px')}
                             onUpdate={onHobbiesFiltereSelected}
                             maxHeight='140px'
                         />
