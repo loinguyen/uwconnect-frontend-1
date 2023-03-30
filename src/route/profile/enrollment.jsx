@@ -52,7 +52,7 @@ function Enrollment(){
     const dispatch = useDispatch(); //This is used to store a value into Redux store
     const programVal = useSelector((state) => { return {"value" : state.user.program, "label": state.user.program}}); //retrieve value from Redux store and use as default
     const facultyVal = useSelector((state) => { return {"value" : state.user.faculty, "label": state.user.faculty}});
-    const yearVal = useSelector((state) => state.user.year);
+    const yearVal = useSelector((state) => { return {"value" : state.user.year, "label": state.user.year}});
     const courseVal = useSelector((state) => state.user.courses.map((item) => {return {"value" : item, "label": item }}));
     const [programArray, setProgramArray] = useState([]);
     const [facultyArray, setFacultyArray] = useState([]);
@@ -75,7 +75,7 @@ function Enrollment(){
         dispatch(setCourses(Array.isArray(e) ? e.map(x => x.value) : []))
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         fetch(process.env.REACT_APP_API_LINK + '/enrollment', { credentials: 'include' })
         .then(response => response.json())
         .then(json => {
@@ -97,9 +97,7 @@ function Enrollment(){
             {/* <input autoFocus  type="text" /> */}
             <label>{/*Admission Year*/}</label>
             <Select
-                defaultValue={() => yearArray.filter(function(list) {
-                    return list.value === yearVal;
-                })}
+                defaultValue={yearVal}
                 placeholder="Admission Year" 
                 styles={selectStyle}  
                 options={yearArray}  
