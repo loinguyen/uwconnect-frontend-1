@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { setFaculty, setYear, setProgram, setCourses } from '../../redux/profile/profileSlice'
 import style from '../../styles/formStyle.module.css';
@@ -45,58 +45,20 @@ const selectStyle = {
         ...base,
         color: 'white'}),
     multiValue : (baseStyles, state) => ({...baseStyles,backgroundColor: 'orange'})
-    // input : base => ({color:"white"})  
-    // valueContainer : base => ({color:"white"})
   };
 
-// type UserFormProps = {
-//     program: string
-//     admission_year: string
-//     faculty: string
-//     course: string
-// }
-
-let programList = [];
-let facultyList = [];
-let courseList = [];
-let yearList = ['1', '2', '3', '4', '5', '6', '7'];
-//const [programList, setProgramList] = useState([]);
-        fetch(process.env.REACT_APP_API_LINK + '/enrollment', { credentials: 'include' })
-        .then(response => response.json())
-        .then(json => {programList = json.program; facultyList = json.faculty; courseList = json.course})
-        //.then(json => programList = json.program)
-        
-        // .then(json => courseList = json.course)
-
-
-function Enrollment({program,admission_year,faculty,course}){
-    //const [facultyList, setFacultyList] = useState([]);
-    
-    //const [coureseList, setCoursesList] = useState([]);
+function Enrollment(){
+    let yearList = ['1', '2', '3', '4', '5', '6', '7'];
     const dispatch = useDispatch(); //This is used to store a value into Redux store
-
     const programVal = useSelector((state) => state.user.program); //retrieve value from Redux store and use as default
     const facultyVal = useSelector((state) => state.user.faculty);
     const yearVal = useSelector((state) => state.user.year);
     const courseVal = useSelector((state) => state.user.courses);
-    const programArray = programList.map((program) => {return {"value" : program, "label": program }});
-    const facultyArray = facultyList.map((faculty) => {return {"value" : faculty, "label": faculty }});
-    const courseArray = courseList.map((course) => {return {"value" : course, "label": course }});
-    const yearArray = yearList.map((year) => {return {"value" : year, "label": year }});
+    const [programArray, setProgramArray] = useState([]);
+    const [facultyArray, setFacultyArray] = useState([]);
+    const [courseArray, setCourseArray] = useState([]);
+    const yearArray = yearList.map((item) => {return {"value" : item, "label": item }});
     
-    // const [programList, setProgramList] = useState([]);
-    //     fetch(process.env.REACT_APP_API_LINK + '/enrollment')
-    //     .then(response => response.json())
-    //     .then(json => setProgramList(json.program))
-
-    //const programArray = [{ value: programList, label: programList }]
-    // const programArray = programList.map((program) => {return {"value" : program, "label": program }});
-
-    
-    //console.log(programList);
-    // function MakeList (X) {
-    //         return <option>{X}</option>;
-    //     };
     function handleFacultyChange(e) {
         dispatch(setFaculty(e.value));
     }
@@ -113,11 +75,18 @@ function Enrollment({program,admission_year,faculty,course}){
         dispatch(setCourses(Array.isArray(e) ? e.map(x => x.value) : []))
     }
 
+    React.useEffect(() => {
+        fetch(process.env.REACT_APP_API_LINK + '/enrollment', { credentials: 'include' })
+        .then(response => response.json())
+        .then(json => {
+            setProgramArray(json.program.map((item) => {return {"value" : item, "label": item }}));
+            setFacultyArray(json.faculty.map((item) => {return {"value" : item, "label": item }}));
+            setCourseArray(json.course.map((item) => {return {"value" : item, "label": item }}));
+        });
+    }, []);
+
     return (
-       <div className="multiSelect">
-            {/* <p >What are you enrolling in this term?</p> */}
-            <br></br>
-            {/* <label>Faculty</label> */}
+        <div className="multiSelect">
             <Select
                 defaultValue={facultyArray.filter(function(list) {
                     return list.value === facultyVal;
@@ -156,12 +125,8 @@ function Enrollment({program,admission_year,faculty,course}){
                 options={courseArray}
                 onUpdate={handleCourseChange}
             />
-       </div>
-       
-
+        </div>
     )
-
-
 }
 
 export default Enrollment;

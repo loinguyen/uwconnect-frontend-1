@@ -25,7 +25,7 @@ function ModifyProfile(){
     let courses = useSelector((state) => state.user.courses);
     let tags = useSelector((state) => state.user.tags);
     let profileVisible = useSelector((state) => state.user.profile_visible);
-    let [flag, setFlag] = useState(false);
+    const [flag, setFlag] = useState(false);
     let select = useSelector((state) => (state))
 
     const [isHover, setHover] = useState(false);
@@ -84,6 +84,10 @@ function ModifyProfile(){
         }
     }
 
+    function handleCancel() {
+        window.location.href = '/home';
+    }
+
     React.useEffect(() => {
         // fetch user profile
         fetch(process.env.REACT_APP_API_LINK + `/user/profile?email=${encodeURIComponent(email)}`, { credentials: 'include' })
@@ -105,12 +109,12 @@ function ModifyProfile(){
             window.location.href = '/home';
         }
       }, [msg]);
-    
+
     return (
         <>
         {flag && <div style={{height:"93vh"}} className="container-fluid row d-flex flex-row overflow-auto text-center"> 
             <div className="row">
-                <div className="col-7 m-auto"> 
+                <div className="col-8 m-auto"> 
                     <h1>---Personal info---</h1>
                     {<GetIdentity/>}
                     <br></br>
@@ -126,8 +130,13 @@ function ModifyProfile(){
                 </div>
             </div>
             <div className="row">
-                <div className="col-6 m-auto">
+                <div className="col-8 m-auto d-flex justify-content-center">
                     <p className={style.errorMsg}>{submitError}</p>
+                    <button
+                        type="button" 
+                        className="btn btn-dark me-4"
+                        onClick={handleCancel}
+                    >Cancel</button>
                     <button
                         type="button" 
                         className="btn btn-dark"
