@@ -34,9 +34,9 @@ const selectStyle = {
       marginTop: 0
     }),
     
-    menuList :(baseStyles, state) =>
+    menuList :(baseStyles) =>
      ({...baseStyles,
-    
+      maxHeight: '180px',
       color: 'black'}),
     singleValue: (base, state) => ({
         ...base,
@@ -50,10 +50,10 @@ const selectStyle = {
 function Enrollment(){
     let yearList = ['1', '2', '3', '4', '5', '6', '7'];
     const dispatch = useDispatch(); //This is used to store a value into Redux store
-    const programVal = useSelector((state) => state.user.program); //retrieve value from Redux store and use as default
-    const facultyVal = useSelector((state) => state.user.faculty);
+    const programVal = useSelector((state) => { return {"value" : state.user.program, "label": state.user.program}}); //retrieve value from Redux store and use as default
+    const facultyVal = useSelector((state) => { return {"value" : state.user.faculty, "label": state.user.faculty}});
     const yearVal = useSelector((state) => state.user.year);
-    const courseVal = useSelector((state) => state.user.courses);
+    const courseVal = useSelector((state) => state.user.courses.map((item) => {return {"value" : item, "label": item }}));
     const [programArray, setProgramArray] = useState([]);
     const [facultyArray, setFacultyArray] = useState([]);
     const [courseArray, setCourseArray] = useState([]);
@@ -88,9 +88,7 @@ function Enrollment(){
     return (
         <div className="multiSelect">
             <Select
-                defaultValue={facultyArray.filter(function(list) {
-                    return list.value === facultyVal;
-                })}
+                defaultValue={facultyVal}
                 placeholder="Faculty" 
                 styles={selectStyle}  
                 options={facultyArray} 
@@ -99,7 +97,7 @@ function Enrollment(){
             {/* <input autoFocus  type="text" /> */}
             <label>{/*Admission Year*/}</label>
             <Select
-                defaultValue={yearArray.filter(function(list) {
+                defaultValue={() => yearArray.filter(function(list) {
                     return list.value === yearVal;
                 })}
                 placeholder="Admission Year" 
@@ -109,9 +107,7 @@ function Enrollment(){
             />
             <label>{/*Program*/}</label>
             <Select
-                defaultValue={programArray.filter(function(list) {
-                    return list.value === programVal;
-                })}
+                defaultValue={programVal}
                 placeholder="Program" 
                 styles={selectStyle}  
                 options={programArray} 
@@ -122,7 +118,7 @@ function Enrollment(){
                 class="multiSelect"
                 placeholder="Courses"
                 styles={selectStyle}
-                defaultValue={courseArray.filter(obj => courseVal.includes(obj.value))}
+                defaultValue={courseVal}
                 options={courseArray}
                 onUpdate={handleCourseChange}
                 maxHeight='180px'

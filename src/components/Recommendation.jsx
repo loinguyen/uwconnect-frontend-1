@@ -165,9 +165,10 @@ function GetRecommendation(props){
                         <MultiSelectLargeList
                             placeholder="Type to search"
                             defaultValue={selectedCourses}
-                            styles={() => customeMultiSelectStyle('180px')}
+                            styles={customeMultiSelectStyle('180px')}
                             options={coursesList}
                             onUpdate={onCoursesFilterSelected}
+                            itemHeight={35}
                         />
                     </div>
                     <div>
@@ -176,9 +177,9 @@ function GetRecommendation(props){
                             placeholder="Type to search"
                             defaultValue={selectedHobbies}
                             options={hobbiesList}
-                            styles={() => customeMultiSelectStyle('140px')}
+                            styles={customeMultiSelectStyle('140px')}
                             onUpdate={onHobbiesFiltereSelected}
-                            maxHeight='140px'
+                            itemHeight={35}
                         />
                     </div>
                 </div>

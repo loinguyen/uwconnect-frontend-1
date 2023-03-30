@@ -114,7 +114,7 @@ function ModifyProfile(){
         <>
         {flag && <div style={{height:"93vh"}} className="container-fluid row d-flex flex-row overflow-auto text-center"> 
             <div className="row">
-                <div className="col-8 m-auto"> 
+                <div className="col-xl-5 col-6 m-auto"> 
                     <h1>---Personal info---</h1>
                     {<GetIdentity/>}
                     <br></br>
