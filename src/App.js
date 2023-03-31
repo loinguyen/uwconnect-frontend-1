@@ -15,6 +15,8 @@ import Layout from './components/Layout'
 import Home from './route/home/Home';
 import CreateProfile from "./route/profile/createProfile";
 import ModifyProfile from "./route/profile/modifyProfile";
+import { persistor } from './redux/store'
+
 
 import {
   Routes,
