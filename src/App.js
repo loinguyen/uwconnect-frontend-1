@@ -15,6 +15,8 @@ import Layout from './components/Layout'
 import Home from './route/home/Home';
 import CreateProfile from "./route/profile/createProfile";
 import ModifyProfile from "./route/profile/modifyProfile";
+import { persistor } from './redux/store'
+
 
 import {
   Routes,
@@ -29,18 +31,18 @@ function App() {
   const location = useLocation();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn )
   
-  // useEffect(() => {
-  //   // This function will run before any route rendered
-  //   if (location.pathname === '/' || location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/createprofile') {
-  //     if (isLoggedIn){
-  //       window.location.href = '/home';
-  //     }
-  //   } else{
-  //     if (!isLoggedIn){
-  //       window.location.href = '/';
-  //     }
-  //   }
-  // }, [location]);
+  useEffect(() => {
+    // This function will run before any route rendered
+    if (location.pathname === '/' || location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/createprofile') {
+      if (isLoggedIn){
+        window.location.href = '/home';
+      }
+    } else{
+      if (!isLoggedIn){
+        window.location.href = '/';
+      }
+    }
+  }, [location]);
 
 
   return (
