@@ -29,18 +29,18 @@ function App() {
   const location = useLocation();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn )
   
-  // useEffect(() => {
-  //   // This function will run before any route rendered
-  //   if (location.pathname === '/' || location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/createprofile') {
-  //     if (isLoggedIn){
-  //       window.location.href = '/home';
-  //     }
-  //   } else{
-  //     if (!isLoggedIn){
-  //       window.location.href = '/';
-  //     }
-  //   }
-  // }, [location]);
+  useEffect(() => {
+    // This function will run before any route rendered
+    if (location.pathname === '/' || location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/createprofile') {
+      if (isLoggedIn){
+        window.location.href = '/home';
+      }
+    } else{
+      if (!isLoggedIn){
+        window.location.href = '/';
+      }
+    }
+  }, [location]);
 
 
   return (
