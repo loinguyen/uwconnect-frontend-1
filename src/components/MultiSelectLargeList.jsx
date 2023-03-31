@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { FixedSizeList as List } from "react-window";
 import Select from 'react-select';
 import '../styles/multiSelectLargeList.css'
