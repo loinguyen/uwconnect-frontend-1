@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build ",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "node ./postinstall.js"
@@ -62,8 +62,6 @@
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
-    "@typescript-eslint/parser": "^5.57.0",
-    "jest": "^27.5.1",
     "react-test-renderer": "^18.2.0",
     "request": "^2.88.2",
     "typescript": "^5.0.3"
