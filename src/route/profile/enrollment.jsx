@@ -52,9 +52,9 @@ const selectStyle = {
 function Enrollment(){
     let yearList = ['1', '2', '3', '4', '5', '6', '7'];
     const dispatch = useDispatch(); //This is used to store a value into Redux store
-    const programVal = useSelector((state) => { return {"value" : state.user.program, "label": state.user.program}}); //retrieve value from Redux store and use as default
-    const facultyVal = useSelector((state) => { return {"value" : state.user.faculty, "label": state.user.faculty}});
-    const yearVal = useSelector((state) => { return {"value" : state.user.year, "label": state.user.year}});
+    const programVal = useSelector((state) => { return state.user.program === "" ? null : {"value" : state.user.program, "label": state.user.program}}); //retrieve value from Redux store and use as default
+    const facultyVal = useSelector((state) => { return state.user.faculty === "" ? null : {"value" : state.user.faculty, "label": state.user.faculty}});
+    const yearVal = useSelector((state) => { return state.user.year === 0 ? null : {"value" : state.user.year, "label": state.user.year}});
     const courseVal = useSelector((state) => state.user.courses.map((item) => {return {"value" : item, "label": item }}));
     const [programArray, setProgramArray] = useState([]);
     const [facultyArray, setFacultyArray] = useState([]);
