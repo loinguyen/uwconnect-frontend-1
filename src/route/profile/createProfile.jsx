@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom';
 import { redirect } from "react-router-dom";
-import { useMultistepForm } from "../../components/MultistepForm.ts";
+import { useMultistepForm } from "../../components/MultistepForm.jsx";
 
 import GetProfileHobbies from "./hobbies";
 import Enrollment from "./enrollment";
