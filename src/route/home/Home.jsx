@@ -98,7 +98,7 @@ const Home = () => {
                         ))
                         
                     }
-                    <div className="col-9 h-100" style={{display: openConnection ? 'block': 'none'}}>
+                    <div className="col-9 h-100" style={{display: openConnection ? 'block': 'none', zIndex:1, backgroundColor: '#282c34'}}>
                          <GetRecommendation onConnectionSelect={handleConversationSelect}/>
 +                   </div>
                     
