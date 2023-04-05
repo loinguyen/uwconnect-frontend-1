@@ -5,10 +5,22 @@ exports[`matches snapshot 1`] = `
   className="loginContainer"
   data-testid="signup-1"
 >
-  <img
-    alt=""
-    src="login_logo.png"
-  />
+  <span
+    className="ant-avatar ant-avatar-circle ant-avatar-image my-auto css-dev-only-do-not-override-ph9edi"
+    style={
+      Object {
+        "fontSize": 18,
+        "height": 190,
+        "lineHeight": "190px",
+        "width": 190,
+      }
+    }
+  >
+    <img
+      alt=""
+      src="login_logo.png"
+    />
+  </span>
   <h1>
     UWConnect
   </h1>
