@@ -9,6 +9,7 @@ import styles from'../../styles/home.css'
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../../redux/profile/profileSlice";
 import BottomNavBar from "../../components/BottomNavBar";
+import Popup from "../../components/UserWarningPopUp"
 
 const authKey = process.env.REACT_APP_COMETCHAT_AUTH_KEY;
 
@@ -20,11 +21,19 @@ const Home = () => {
     const [openConnection, setOpenConnection] = useState(false);
     const [renderCometChat, setRenderCometChat] = useState(false);
     const [selectedMessageTab, setSelectedMessageTab] = useState('message');
+    const [friends, setFriends ] = useState([])
+    const [popupWarning, setPopupWarning ] = useState(false);
     const email = useSelector((state) => state.auth.email);
     
     // let appID = process.env.REACT_APP_COMETCHAT_APPID;
     // const region = "us";
     // let authKey = process.env.REACT_APP_COMETCHAT_AUTH_KEY;
+    function arrayEquals(a, b) {
+        return Array.isArray(a) &&
+            Array.isArray(b) &&
+            a.length === b.length &&
+            a.every((val, index) => val === b[index]);
+    }
 
     useEffect(() => {
         if (email) {
@@ -39,10 +48,15 @@ const Home = () => {
                 console.log('CometChatLogin Failed', error);
                 setRenderCometChat(false)
             })
+
+            getFriendList(email)
+
+
         }
 
         setUid(email.split("@")[0]);
     },[email])
+
 
     const getUserDetail = () => {
         fetch(process.env.REACT_APP_API_LINK + `/user/profile?email=${encodeURIComponent(email)}`, { credentials: 'include' })
@@ -53,7 +67,19 @@ const Home = () => {
         })
     } 
 
+    const getFriendList = (me) => {
+        console.log("getFriendList")
+        fetch(process.env.REACT_APP_API_LINK + `/user/friends?email=${encodeURIComponent(me)}`, { credentials: 'include' })
+        .then(response => response.json())
+        .then(resp => {
+            if (!arrayEquals(resp.emails, friends)){
+                setFriends(resp.emails)
+            }
+        })
+    }
+
     const handleConversationSelect = (conversationWith, conversationType) => {
+        getFriendList(email)
         for (let [key, value] of conversationIdMap) { 
             conversationIdMap.set(key, false)
         }
@@ -93,6 +119,7 @@ const Home = () => {
                     { !openConnection && renderCometChat &&
                         [...conversationIdMap.keys()].map(k => (
                             conversationIdMap.get(k) && <div className="col-9 h-100">
+                                {!friends.includes(k + "@uwaterloo.ca") && <Popup title={"Friend Alert"} body={"You are not friends, you can maximally send 1 message before the other responded, if the other doesn't respond within 24 hours, this conversation will be deleted. If this is a message that you received from stranger, reply back within 24 hours to become friends!"}/>}
                                 <CometChatMessages chatWithUser={k}/>
                             </div>
                         ))
