@@ -63,10 +63,10 @@ function GetMakePublic(props) {
     }
 
     return (
-        <div >
+        <div data-testid = "makePub-1" >
             {/* <h3>We're almost done! please take a moment to read our terms and conditions...</h3> */}
             <br></br>
-            <label style={{ fontSize:30, padding: "0 10px 0 0", display:"inline" }}>Show me on UWConnect</label>
+            <label data-testid = "makePub-2" style={{ fontSize:30, padding: "0 10px 0 0", display:"inline" }}>Show me on UWConnect</label>
             <Switch
                 display="inline"
                 onChange={handleToggle}
@@ -91,7 +91,7 @@ function GetMakePublic(props) {
                 checked={userAgreeValue}
                 onChange={handleUserAgreeValue}
             />
-            <label style = {{display:"inline", fontSize:18}}>I have read and agree to the <a style={{ color:"orange", fontSize:18 }}>terms of service</a></label>
+            <label  style = {{display:"inline", fontSize:18}}>I have read and agree to the <a style={{ color:"orange", fontSize:18 }}>terms of service</a></label>
             </div>
             }
         </div>

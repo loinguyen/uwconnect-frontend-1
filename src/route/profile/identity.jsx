@@ -143,7 +143,7 @@ function GetIdentity() {
     }
 
     return (
-        <div>
+        <div data-testid = "identity-1">
             {/* <h3>Tell us more about yourself...</h3> */}
             <br></br>
             <Select

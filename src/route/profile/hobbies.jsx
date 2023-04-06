@@ -53,7 +53,7 @@ function GetProfileHobbies() {
 
     //https://rsuitejs.com/components/tag-picker/
     return (
-        <div >
+        <div data-testid = "hobbie-1">
             <div className="profileHobbiesTag">
                 {/* <h3>Here is a list of hobbies, select those that you are interest in...</h3> */}
                 <br></br>
