@@ -88,8 +88,9 @@ function Enrollment(){
     }, []);
 
     return (
-        <div className="multiSelect">
+        <div data-testid = "enroll-1" className="multiSelect">
             <Select
+                
                 defaultValue={facultyVal}
                 placeholder="Faculty" 
                 styles={selectStyle}  
