@@ -86,6 +86,7 @@ function CreateProfile(){
             if (firstName != '' && lastName != '' && gender != '' && imgURL != '' && agreement) {
                 setSubmitError("")
                 fetch(process.env.REACT_APP_API_LINK + '/user/profile', {
+                    credentials: 'include',
                     method: 'POST',
                     headers: {
                     'Accept': 'application/json',

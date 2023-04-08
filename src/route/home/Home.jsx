@@ -108,7 +108,7 @@ const Home = () => {
                                     Connect Me
                             </Button>
                         </div>
-                        <div className="row m-0" style={{flex: 1}}>
+                        <div className="row m-0" style={{flex: 1, maxHeight: 'calc(95vh - (80px + 60px))'}}>
                             {selectedMessageTab === 'message' && <CometChatConversationList onItemClick={handleConversationSelect}/>}
                             {selectedMessageTab === 'friends' && <CometChatUserList friendsOnly={true} onItemClick={handleConversationSelect}/>}
                         </div>
@@ -119,7 +119,7 @@ const Home = () => {
                     { !openConnection && renderCometChat &&
                         [...conversationIdMap.keys()].map(k => (
                             conversationIdMap.get(k) && <div className="col-9 h-100">
-                                {!friends.includes(k + "@uwaterloo.ca") && <Popup title={"Friend Alert"} body={"You are not friends, you can maximally send 1 message before the other responded, if the other doesn't respond within 24 hours, this conversation will be deleted. If this is a message that you received from stranger, reply back within 24 hours to become friends!"}/>}
+                                {friends && !friends.includes(k + "@uwaterloo.ca") && <Popup title={"Friend Alert"} body={"You are not friends, you can maximally send 1 message before the other responded, if the other doesn't respond within 24 hours, this conversation will be deleted. If this is a message that you received from stranger, reply back within 24 hours to become friends!"}/>}
                                 <CometChatMessages chatWithUser={k}/>
                             </div>
                         ))

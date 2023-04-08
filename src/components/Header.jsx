@@ -22,7 +22,6 @@ const items = [
 ];
 
 const handleMenuClick = ({ key }, email ) => {
-    message.info(`Click on item ${key}`);
     if (key === "1") {
         window.location.href = '/modifyprofile';
     }
@@ -61,7 +60,7 @@ function Header() {
                     <Avatar className='my-auto' size={30} src={<img src={logo} alt="" />} />
                     <span className='fs-5 fw-bold my-auto'>UW Connect</span>
                 </div>
-                {avatar && <div className='col-4 d-flex pe-2' style={{alignSelf: 'center', justifyContent: 'flex-end'}}>
+                {email && <div className='col-4 d-flex pe-2' style={{alignSelf: 'center', justifyContent: 'flex-end'}}>
                     <span className='fs-5 fw-bold my-auto'>
                         <Dropdown
                             menu={{

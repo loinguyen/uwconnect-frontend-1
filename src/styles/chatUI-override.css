@@ -94,3 +94,15 @@
 .filelist__item:hover i, .attachment__icon:hover i, .button__emoji:hover i{
     background-color: rgb(255,255,255) !important;
 }
+
+.confirm__dialog {
+    width: 500px !important;
+}
+
+.confirm__message {
+    color: black;
+}
+
+.confirm__buttons button[value="no"] {
+    color: black;
+}
